@@ -1,0 +1,194 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Home" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="SobreNosotros">Sobre Nosotros</a></li>
+                <li><a asp-controller="Home" asp-action="Facilidades">Facilidades</a></li>
+                <li><a asp-controller="Home" asp-action="ComoLlegar">¿Cómo Llegar?</a></li>
+                <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
+                <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
+                <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active" id="slide-1">
+                <div class="container">
+                    <div class="carousel-content animated fadeInUp">
+                        <h2>Bienvenido a <span>BKRJ Resort</span></h2>
+                        <p>Nos identificamos por ser el mejor Beach Resort de Costa Rica, con más de 100 reconocimientos internacionales. Visítenos y disfrute de las hermosas vistas al mar caribe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item" id="slide-2">
+                <div class="container">
+                    <div class="carousel-content animated fadeInUp">
+                        <h2>Su comodidad es nuestro objetivo</h2>
+                        <p>Nos preocupamos por el bienestar de los clientes, es por eso que contamos con todo el equipo necesario para su buena estadía, tanto por el día como por las noches, contamos con un ambiente preparado a la orilla del mar para que disfrute del atardecer caribeño.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item" id="slide-3">
+                <div class="container">
+                    <div class="carousel-content animated fadeInUp">
+                        <h2>Una experiencia nunca antes vivida</h2>
+                        <p>La cercanía con el mar nos permite deleitar a nuestros clientes con hermosas vistas, lo que conlleva una experiencia inimaginable, podrá relajarse frente al mar al tomar el sol, mientras disfruta del excelente servicio que nos caracteriza.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon bx bx-left-arrow" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon bx bx-right-arrow" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-left">
+                    <h3>Hemos destacado a nivel mundial por nuestro servicio, es por eso que somos <span>el mejor Beach Resort de Costa Rica</span></h3>
+                    <p>Nuestro gran servicio al cliente, instalaciones y profesionalismo, nos ha permitido estar entre los mejores <span>50 hoteles</span> alrededor del mundo. </p>
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="#">Reservar Ahora!</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <h2><strong>Promociones</strong></h2>
+            </div>
+            <div class="row">
+
+                <!--<?php foreach($vars['listaOfertas'] as $oferta){  ?>
+
+                    <div class="col-md-4">
+                        <div class="box" data-aos="fade-right">
+                            <h3> <?php echo $oferta['nombre'] ?></h3>
+                            <?php echo $oferta['descripcion'] ?>
+                            <img src=" <?php echo $oferta['imagen'] ?>" alt="oferta" class="img-fluid">
+                            <div class="btn-wrap">
+                                <a href=" <?php echo $oferta['link_destino'] ?>" target="_blank" class="btn-buy">Obtener</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php }?> -->
+
+            </div>
+
+        </div>
+    </section><!-- End Pricing Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="serviceshome" class="serviceshome">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <h2>Ofrecemos <strong>excelentes servicios</strong></h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up">
+                            <div class="icon"><i class="icofont-computer"></i></div>
+                            <h4 class="title"><a href="view/services.php">Equipo</a></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
+                            <h4 class="title"><a href="view/services.php">Precios</a></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="icofont-earth"></i></div>
+                            <h4 class="title"><a href="view/services.php">Internet</a></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="icofont-image"></i></div>
+                            <h4 class="title"><a href="view/services.php">Mirador</a></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                            <div class="icon"><i class="icofont-settings"></i></div>
+                            <h4 class="title"><a href="view/services.php">Seguridad</a></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="view/services.php">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                            <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                            <h4 class="title"><a href="view/services.php">Calendarios</a></h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Services Section -->
+
+
+</main><!-- End #main -->

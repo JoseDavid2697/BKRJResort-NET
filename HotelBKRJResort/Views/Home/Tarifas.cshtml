@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Home" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="SobreNosotros">Sobre Nosotros</a></li>
+                <li><a asp-controller="Home" asp-action="Facilidades">Facilidades</a></li>
+                <li><a asp-controller="Home" asp-action="ComoLlegar">¿Cómo Llegar?</a></li>
+                <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
+                <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
+                <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Tarífas</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Tarífas</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box" data-aos="fade-right">
+                        <h3>1 Noche</h3>
+                        <h4><sup>$</sup>170<span> / persona</span></h4>
+                        <ul>
+                            <li>Aida dere</li>
+                            <li>Nec feugiat nisl</li>
+                            <li>Nulla at volutpat dola</li>
+                            <li>Massa ultricies mi</li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <a href="#" class="btn-buy">Resrvar Ahora!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+                    <div class="box featured" data-aos="fade-up">
+                        <h3>3 Noches</h3>
+                        <h4><sup>$</sup>200<span> / persona</span></h4>
+                        <ul>
+                            <li>Aida dere</li>
+                            <li>Nec feugiat nisl</li>
+                            <li>Nulla at volutpat dola</li>
+                            <li>Pharetra massa</li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <a href="#" class="btn-buy">Reservar Ahora!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+                    <div class="box" data-aos="fade-left">
+                        <h3>1 Semana</h3>
+                        <h4><sup>$</sup>290<span> / persona</span></h4>
+                        <ul>
+                            <li>Aida dere</li>
+                            <li>Nec feugiat nisl</li>
+                            <li>Nulla at volutpat dola</li>
+                            <li>Pharetra massa</li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <a href="#" class="btn-buy">Reservar Ahora!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Pricing Section -->
+    <!-- ======= Cta Pricing Section ======= -->
+    <section id="cta-pricing" class="cta-pricing">
+        <div class="container">
+
+            <div class="text-center">
+                <h3>Tarifas y casos especiales</h3>
+                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <a class="cta-btn" href="#">Contactenos para mas informacion</a>
+            </div>
+
+        </div>
+    </section><!-- End Cta Pricing Section -->
+
+</main><!-- End #main -->
