@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@model ObjetoContenedorPrincipal
 <header id="header">
     <div class="container d-flex">
 
@@ -110,20 +110,19 @@
             </div>
             <div class="row">
 
-                <!--<?php foreach($vars['listaOfertas'] as $oferta){  ?>
-
+                @foreach (var item in Model.Ofertas)
+                {
                     <div class="col-md-4">
                         <div class="box" data-aos="fade-right">
-                            <h3> <?php echo $oferta['nombre'] ?></h3>
-                            <?php echo $oferta['descripcion'] ?>
-                            <img src=" <?php echo $oferta['imagen'] ?>" alt="oferta" class="img-fluid">
+                            <h3>@item.Nombre</h3>
+                            @item.Descripcion
+                            <img src=" @item.Imagen" alt="oferta" class="img-fluid">
                             <div class="btn-wrap">
-                                <a href=" <?php echo $oferta['link_destino'] ?>" target="_blank" class="btn-buy">Obtener</a>
+                                <a href="@item.Link_Destino" target="_blank" class="btn-buy">Obtener</a>
                             </div>
                         </div>
                     </div>
-
-                    <?php }?> -->
+                }
 
             </div>
 
