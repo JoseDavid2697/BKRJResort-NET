@@ -47,7 +47,7 @@
     <br>
 
     <div class="section-title" data-aos="fade-up">
-        <h2>Tenemos una ubicacion <strong>estratégica</strong> para el disfrute del mar caribe</h2>
+        <h2>Tenemos una ubicacion <strong>estratégica</strong> para el disfrute del Oceano Pacifico</h2>
         <p>
             BKRJ Resort, situado en Puntarenas, a 1,2 km del parque marino del Pacífico, ofrece alojamiento con restaurante, aparcamiento privado gratuito, piscina al aire libre y bar. A 400 m del estadio Lito Pérez, el hotel cuenta con un jardín y una terraza. Hay wifi gratis y servicio de habitaciones.
         </p>
@@ -57,10 +57,20 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-md-10">
-                    <div id='map' style='height:480px; width: 1000px;'>
+                    <div id='mymap' style='height:480px; width: 1000px;'>
                     </div>
                     <script>
-                        var map = L.map('map').setView([9.977213, -84.830318], 4);
+
+                        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
+
+                        let mymap = L.map('mymap').setView([9.859533, -83.915920], 13);
+
+
+
+                        L.tileLayer(tilesProvider, {
+                            maxZoom: 18,
+
+                        }).addTo(mymap);
                         var redIcon = new L.Icon({
                             iconUrl: '../assets/img/marker-icon-2x-red.png',
                             iconSize: [25, 41],
@@ -68,44 +78,27 @@
                             popupAnchor: [1, -34],
                             shadowSize: [41, 41]
                         });
-                        var marker1 = L.marker([9.977213, -84.830318], { icon: redIcon }).addTo(map);
-                        var latlngs = Array();
+                        var marker1 = L.marker([9.977213, -84.830318], { icon: redIcon }).addTo(mymap);
 
-                        //Get latlng from first marker
-                        latlngs.push(marker1.getLatLng());
+                        navigator.geolocation.getCurrentPosition(
+                            (pos) => {
+                                const { coords } = pos
+                                console.log(pos)
+                                L.marker([coords.latitude, coords.longitude]).addTo(mymap)
 
-                        
+                            },
+                            (err) => {
+                                console.log(err)
 
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-                        }).addTo(map);
-
-                        var searchControl = L.esri.Geocoding.geosearch().addTo(map);
-
-                        var results = L.layerGroup().addTo(map);
-
-                        searchControl.on('results', function (data) {
-                            let marker2;
-                            results.clearLayers();
-                            for (var i = data.results.length - 1; i >= 0; i--) {
-                                marker2 = L.marker(data.results[i].latlng);
-                                results.addLayer(marker2);
-                                
+                            },
+                            {
+                                enableHighAccuracy: true,
+                                timeout: 500,
+                                maximumAge: 0
                             }
 
-                            //Get latlng from first marker
-                            latlngs.push(marker2.getLatLng());
-
-                            //You can just keep adding markers
-
-                            //From documentation http://leafletjs.com/reference.html#polyline
-                            // create a red polyline from an arrays of LatLng points
-                            var polyline = L.polyline(latlngs, { color: 'green' }).addTo(map);
-
-                            // zoom the map to the polyline
-                            map.fitBounds(polyline.getBounds());
-
-                        });
+                        );
+               
                     </script>
                 </div>
             </div>
