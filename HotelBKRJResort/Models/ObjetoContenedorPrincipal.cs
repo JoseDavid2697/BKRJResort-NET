@@ -10,5 +10,7 @@ namespace HotelBKRJResort.Models
 
         public List<Oferta> Ofertas { get; set; }
 
+        public List<Tarifa> Tarifas{ get; set; }
+
     }
 }

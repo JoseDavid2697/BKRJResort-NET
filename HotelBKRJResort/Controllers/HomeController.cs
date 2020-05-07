@@ -52,7 +52,13 @@ namespace HotelBKRJResort.Controllers
         public IActionResult Tarifas()
         {
 
-            return View();
+            TarifaBusiness tarifaBusiness = new TarifaBusiness(this.Configuration);
+
+            ObjetoContenedorPrincipal contenedor = new ObjetoContenedorPrincipal();
+
+            contenedor.Tarifas = tarifaBusiness.ObtenerTarifas();
+
+            return View("Tarifas", contenedor);
         }
 
         public IActionResult ReservasEnLinea()
