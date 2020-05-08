@@ -63,7 +63,7 @@
                         const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                         let mymap = L.map('mymap').setView([9.859533, -83.915920], 13);
                         L.tileLayer(tilesProvider, {
-                            maxZoom: 18,
+                            maxZoom: 9,
                         }).addTo(mymap);
                         var redIcon = new L.Icon({
                             iconUrl: '../assets/img/marker-icon-2x-red.png',
