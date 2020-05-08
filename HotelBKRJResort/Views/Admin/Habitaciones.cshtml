@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_Layout";
 }
-@model ObjetoContenedorPrincipal
+@model List<Habitacion>
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -14,14 +14,9 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Home" asp-action="SobreNosotros">Sobre Nosotros</a></li>
-                <li><a asp-controller="Home" asp-action="Facilidades">Facilidades</a></li>
-                <li><a asp-controller="Home" asp-action="ComoLlegar">¿Cómo Llegar?</a></li>
-                <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
-                <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
-                <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
-                <li><a asp-controller="Admin" asp-action="LogIn">Iniciar Sesión</a></li>
+                <li class="active"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Admin" asp-action="verificarEstadoHabitaciones">Habitaciones</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Cerrar Sesión</a></li>
 
             </ul>
         </nav><!-- .nav-menu -->
@@ -36,10 +31,10 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Tarífas</h2>
+                <h2>Habitaciones</h2>
                 <ol>
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li>Tarífas</li>
+                    <li>Habitaciones</li>
                 </ol>
             </div>
 
@@ -52,31 +47,44 @@
             <div class="row">
 
 
-                @foreach (var item in Model.Tarifas)
+                @foreach (var item in Model)
                 {
                     <div class="col-md-4">
                         <div class="tab-content">
                             <div class="tab-pane active show" id="tab-1">
                                 <figure>
-                                    <img src="@item.Imagen" alt="imagen" class="img-fluid">
+                                    <img src="@item.imagen" alt="imagen" class="img-fluid">
                                 </figure>
                             </div>
 
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <h3>@item.Nombre</h3>
-                        <h4><sup>$</sup>@item.Precio<span> / persona</span></h4>
-                        @item.Descripcion
-                        <br></br>
-                        <br></br>
+                        <br> <br>
+                        <h4>Número de habitación: @item.id_habitacion</h4>
+                        <br>
+                        <h4>Tipo de habitación: @item.nombre</h4>
+                        <br>
+
+                        @if (item.estado == 0)
+                        {
+                            <h4>Estado: Ocupada</h4>
+                            <h5>Disponible a partir de @item.fecha_final</h5>
+                        }
+                        else
+                        {
+                            <h4>Estado: Disponible</h4>
+                        }
+
+                        <br>
+                        <br>
                     </div>
                 }
             </div>
 
         </div>
 
-        
+
     </section><!-- End Pricing Section -->
 
 

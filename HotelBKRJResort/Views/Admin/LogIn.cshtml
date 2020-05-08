@@ -31,7 +31,7 @@
 
 <style>
     #main {
-        background-image: url('../assets/img/background.jpg');
+        background-image: url('../assets/img/slide/slide-1.jpg');
         background-size: cover;
     }
 
@@ -133,10 +133,14 @@
                 color: rgba(255, 255, 255, 0.5);
             }
 
-            .booking-form input[type="date"].form-control + .form-label {
+            .booking-form input[type="text"].form-control + .form-label {
                 opacity: 1;
                 top: 10px;
             }
+        .booking-form input[type="password"].form-control + .form-label {
+            opacity: 1;
+            top: 10px;
+        }
 
         .booking-form select.form-control {
             -webkit-appearance: none;
@@ -220,60 +224,48 @@
                 opacity: 0.9;
             }
 </style>
-    <main id="main">
+<main id="main">
 
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2>Reservacion en Linea</h2>
-                    <ol>
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li>Reservacion en Linea</li>
-                    </ol>
-                </div>
-
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Inicio de Sesión</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Inicio de Sesión</li>
+                </ol>
             </div>
-        </section><!-- End Breadcrumbs -->
-        <br><br>
-        <div id="booking" class="container">
-            <div class="container" style="text-align: center">
-                <div class="container">
-                    <div class="row">
-                        <div class="booking-form">
-                            <form asp-action="ValidarReservacion" asp-controller="Home" method="post">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input class="form-control" type="date" id="fecha_llegada" name="fecha_llegada" required>
-                                            <span class="form-label">Fecha de llegada</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input class="form-control" type="date" id="fecha_salida" name="fecha_salida" required>
-                                            <span class="form-label">Fecha de salida</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" name="tipo_habitacion" id="tipo_habitacion" required>
-                                        <option selected disabled>Tipo de habitacion</option>
-                                        <option value="1">Standar</option>
-                                        <option value="2">Junior</option>
 
-                                    </select>
-                                    <span class="select-arrow"></span>
-                                </div>
-                                <div class="form-btn">
-                                    <button class="submit-btn">Aceptar</button>
-                                </div>
-                            </form>
-                        </div>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <br><br>
+    <div id="booking" class="container">
+        <div class="container" style="text-align: center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <form asp-action="ValidarUsuario" asp-controller="Admin" method="post">
+                            
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="usuario" name="usuario" required>
+                                <span class="form-label">Nombre de usuario</span>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control"  type="password" id="contra" name="contra" required>
+                                <span class="form-label">Contraseña</span>
+                            </div>
+                                
+                            
+                            <div class="form-btn">
+                                <button class="submit-btn">Ingresar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br>
-    </main><!-- End #main -->
+    </div>
+    <br><br>
+</main><!-- End #main -->

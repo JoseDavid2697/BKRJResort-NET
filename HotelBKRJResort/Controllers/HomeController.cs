@@ -29,7 +29,7 @@ namespace HotelBKRJResort.Controllers
 
             contenedor.Ofertas = ofertaBusiness.ObtenerOfertas();
 
-            return View("Index",contenedor);
+            return View("Index", contenedor);
         }
 
         public IActionResult SobreNosotros()
@@ -73,6 +73,7 @@ namespace HotelBKRJResort.Controllers
             return View();
         }
 
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -83,7 +84,7 @@ namespace HotelBKRJResort.Controllers
 
         //Valida si una habitacion esta disponible en las fechas indicadas
         [HttpPost]
-        public IActionResult ValidarReservacion(String fecha_llegada,String fecha_salida, int tipo_habitacion)
+        public IActionResult ValidarReservacion(String fecha_llegada, String fecha_salida, int tipo_habitacion)
         {
             ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
 
@@ -94,5 +95,7 @@ namespace HotelBKRJResort.Controllers
 
             return View("ResultadoHabitacion", contenedor);
         }
+
+       
     }
 }

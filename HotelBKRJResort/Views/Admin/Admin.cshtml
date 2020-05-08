@@ -17,14 +17,9 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Home" asp-action="SobreNosotros">Sobre Nosotros</a></li>
-                <li><a asp-controller="Home" asp-action="Facilidades">Facilidades</a></li>
-                <li><a asp-controller="Home" asp-action="ComoLlegar">¿Cómo Llegar?</a></li>
-                <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
-                <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
-                <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
-                <li><a asp-controller="Admin" asp-action="LogIn">Iniciar Sesión</a></li>
+                <li class="active"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Admin" asp-action="verificarEstadoHabitaciones">Habitaciones</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Cerrar Sesión</a></li>
 
             </ul>
         </nav><!-- .nav-menu -->
@@ -95,9 +90,7 @@
                     <h3>Hemos destacado a nivel mundial por nuestro servicio, es por eso que somos <span>el mejor Beach Resort de Costa Rica</span></h3>
                     <p>Nuestro gran servicio al cliente, instalaciones y profesionalismo, nos ha permitido estar entre los mejores <span>50 hoteles</span> alrededor del mundo. </p>
                 </div>
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" asp-controller="Home" asp-action="ReservasEnLinea">Reservar Ahora!</a>
-                </div>
+                
             </div>
 
         </div>
@@ -139,7 +132,7 @@
 
             <div class="row">
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a>
                         <div class="icon-box" data-aos="fade-up">
                             <div class="icon"><i class="icofont-computer"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Equipo</a></h4>
@@ -147,7 +140,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a>
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                             <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Precios</a></h4>
@@ -155,7 +148,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a>
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon"><i class="icofont-earth"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Internet</a></h4>
@@ -163,7 +156,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a>
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon"><i class="icofont-image"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Mirador</a></h4>
@@ -171,7 +164,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a>
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                             <div class="icon"><i class="icofont-settings"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Seguridad</a></h4>
@@ -179,14 +172,14 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <a asp-controller="Home" asp-action="Facilidades">
+                    <a >
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                             <div class="icon"><i class="icofont-tasks-alt"></i></div>
                             <h4 class="title"><a asp-controller="Home" asp-action="Facilidades">Calendarios</a></h4>
                         </div>
                     </a>
                 </div>
-            </div> 
+            </div>
         </div>
     </section><!-- End Services Section -->
 
