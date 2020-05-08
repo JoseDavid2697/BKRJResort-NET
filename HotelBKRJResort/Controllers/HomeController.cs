@@ -78,5 +78,21 @@ namespace HotelBKRJResort.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        //Valida si una habitacion esta disponible en las fechas indicadas
+        [HttpPost]
+        public IActionResult ValidarReservacion(String fecha_llegada,String fecha_salida, int tipo_habitacion)
+        {
+            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+
+            ObjetoContenedorPrincipal contenedor = new ObjetoContenedorPrincipal();
+
+            contenedor.Habitacion = reservacionBusiness.ValidarReservacion(fecha_llegada, fecha_salida, tipo_habitacion);
+
+
+            return View("ResultadoHabitacion", contenedor);
+        }
     }
 }

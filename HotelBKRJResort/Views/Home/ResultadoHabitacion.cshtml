@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model ObjetoContenedorPrincipal
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Home" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="SobreNosotros">Sobre Nosotros</a></li>
+                <li><a asp-controller="Home" asp-action="Facilidades">Facilidades</a></li>
+                <li><a asp-controller="Home" asp-action="ComoLlegar">¿Cómo Llegar?</a></li>
+                <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
+                <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
+                <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Tarífas</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Resultado de reservacion</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="features" class="features">
+        <div class="container">
+            <br /><br /><br /><br />
+
+
+            @if (@Model.Habitacion.resultado == 0)
+            {
+                <p>Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles.</p>
+                <a asp-action="ReservasEnLinea" asp-controller="Home">Volver</a>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="tab-content">
+                            <div class="tab-pane active show" id="tab-1">
+                                <figure>
+                                    <img src="@Model.Habitacion.imagen" alt="imagen" class="img-fluid">
+                                </figure>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <p>@Model.Habitacion.descripcion</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Monto de su reservacion: $@Model.Habitacion.monto</p>
+                        <form asp-action="insertarReservacion" asp-controller="Reservacion" method="post">
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Nombre:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Apellidos:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="apellidos" name="apellidos">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Email:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" name="email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Tarjeta de credito:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="tarjeta" name="tarjeta">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <button class="btn btn-success" type="submit">Aceptar</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-danger" type="submit">Cancelar</button>
+                                </div>
+                            </div>
+                            <input type="number" id="id_habitacion" name="id_habitacion" value="@Model.Habitacion.id_habitacion" hidden />
+                            <input type="text" id="fecha_inicio" name="fecha_inicio" value="@Model.Habitacion.fecha_inicio" hidden />
+                            <input type="text" id="fecha_final" name="fecha_final" value="@Model.Habitacion.fecha_final" hidden />
+                            <input type="text" id="monto" name="monto" value="@Model.Habitacion.monto" hidden />
+                        </form>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </section><!-- End Pricing Section -->
+
+
+</main><!-- End #main -->
