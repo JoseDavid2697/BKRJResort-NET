@@ -21,6 +21,7 @@
                 <li><a asp-controller="Home" asp-action="Tarifas">Tarífas</a></li>
                 <li><a asp-controller="Home" asp-action="ReservasEnLinea">Reservas en Línea</a></li>
                 <li><a asp-controller="Home" asp-action="Contactenos">Cóntactenos</a></li>
+                <li><a asp-controller="Admin" asp-action="LogIn">Iniciar Sesión</a></li>
 
             </ul>
         </nav><!-- .nav-menu -->
@@ -51,12 +52,12 @@
                               <div class="row">
                                   <div class="col-12">
                                       <h4>
-                                          Reservacion realizada!
+                                          Reservación realizada!
                                       </h4>
                                       <p>
-                                          Gracias @Model.mensaje.nombre Su reservacion fue realizada exitosamente.<br />
-                                          Numero de reservacion: @Model.mensaje.codigo <br />
-                                          Acabamos de enviar esta informacion a la direccion @Model.mensaje.email para mayor facilidad. <br />
+                                          Gracias @Model.mensaje.nombre Su reservación fue realizada exitosamente.<br />
+                                          Número de reservación: @Model.mensaje.codigo <br />
+                                          Acabamos de enviar esta información a la dirección @Model.mensaje.email para mayor facilidad. <br />
                                           Gracias por preferirnos!<br />
 
                                       </p>
