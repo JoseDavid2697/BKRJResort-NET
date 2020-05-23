@@ -26,6 +26,56 @@ namespace HotelBKRJResort.Controllers
             return View();
         }
 
+        public IActionResult Temporadas()
+        {
+            TemporadaBusiness temporadaBusiness = new TemporadaBusiness(this.Configuration);
+
+            List<Temporada> temporadas = temporadaBusiness.ObtenerTemporadas();
+
+            return View("Temporadas", temporadas);
+        }
+
+
+        [HttpPost]
+        public IActionResult RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        {
+            TemporadaBusiness temporadaBusiness = new TemporadaBusiness(this.Configuration);
+
+            List<Temporada> temporadas = temporadaBusiness.RegistrarTemporada(nombre, fechaInicio, fechaFin, multiplicador);
+
+            return View("Temporadas", temporadas);
+        }
+
+        [HttpPost]
+        public IActionResult ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        {
+            System.Diagnostics.Debug.WriteLine(id);
+            System.Diagnostics.Debug.WriteLine(nombre);
+            System.Diagnostics.Debug.WriteLine(multiplicador);
+            TemporadaBusiness temporadaBusiness = new TemporadaBusiness(this.Configuration);
+
+            List<Temporada> temporadas = temporadaBusiness.ActualizarTemporada(id, nombre, fechaInicio, fechaFin, multiplicador);
+
+            return View("Temporadas", temporadas);
+        }
+
+        [HttpPost]
+        public IActionResult EliminarTemporada(int id)
+        {
+            System.Diagnostics.Debug.WriteLine(id);
+            TemporadaBusiness temporadaBusiness = new TemporadaBusiness(this.Configuration);
+
+            List<Temporada> temporadas = temporadaBusiness.EliminarTemporada(id);
+
+            return View("Temporadas", temporadas);
+        }
+
+        
+        public IActionResult Ofertas()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult ValidarUsuario(String usuario, String contra)
         {
