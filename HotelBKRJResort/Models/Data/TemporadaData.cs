@@ -53,7 +53,7 @@ namespace HotelBKRJResort.Models.Data
 
             return temporadas;
         }
-
+        
         public List<Temporada> RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, float multiplicador)
         {
 
@@ -101,7 +101,8 @@ namespace HotelBKRJResort.Models.Data
 
             return temporadas;
         }
-
+        
+           
         public List<Temporada> ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
         {
 
@@ -148,8 +149,8 @@ namespace HotelBKRJResort.Models.Data
 
             return temporadas;
         }
-
-
+        
+        
         public List<Temporada> EliminarTemporada(int id)
         {
 

@@ -16,12 +16,40 @@ namespace HotelBKRJResort.Models.Business
         {
             Configuration = configuration;
         }
+        
+        public List<Oferta> ObtenerOfertasAdmin()
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.ObtenerOfertasAdmin();
+        }
 
         public List<Oferta> ObtenerOfertas()
         {
             OfertaData ofertaData = new OfertaData(this.Configuration);
 
             return ofertaData.ObtenerOfertas();
+        }
+
+        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino)
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.RegistrarOferta(nombre, descripcion, linkDestino);
+        }
+
+        public List<Oferta> ActualizarOferta(int id, String nombre, String descripcion, String linkDestino)
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.ActualizarOferta(id, nombre, descripcion, linkDestino);
+        }
+
+        public List<Oferta> EliminarOferta(int id)
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.EliminarOferta(id);
         }
     }
 }
