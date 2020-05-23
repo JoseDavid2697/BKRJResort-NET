@@ -1,9 +1,7 @@
-﻿
-@{
-    ViewData["Title"] = "ConsultarHabitacion";
+﻿@{
+    Layout = "_Layout";
 }
-
-@model List<Habitacion>
+@model List<Temporada>
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -35,9 +33,10 @@
 
     </div>
 </header><!-- End Header -->
+
 <style>
     #main {
-        background-image: url('../assets/img/background.jpg');
+        background-image: url('../assets/img/slide/slide-1.jpg');
         background-size: cover;
     }
 
@@ -144,6 +143,21 @@
                 top: 10px;
             }
 
+        .booking-form input[type="number"].form-control + .form-label {
+            opacity: 1;
+            top: 10px;
+        }
+
+        .booking-form input[type="text"].form-control + .form-label {
+            opacity: 1;
+            top: 10px;
+        }
+
+        .booking-form input[type="password"].form-control + .form-label {
+            opacity: 1;
+            top: 10px;
+        }
+
         .booking-form select.form-control {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -233,13 +247,12 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Consultar Disponibilidad</h2>
+                <h2>Gestión de temporadas</h2>
                 <ol>
-                    <li><a asp-controller="Admin" asp-action="Index">Home</a></li>
-                    <li>Consultar Disponibilidad</li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Gestión de temporadas</li>
                 </ol>
             </div>
-
         </div>
     </section><!-- End Breadcrumbs -->
     <br><br>
@@ -248,34 +261,35 @@
             <div class="container">
                 <div class="row">
                     <div class="booking-form">
-                        <form asp-action="ResultadoConsultarHabitacion" asp-controller="Admin" method="post">
+                        <form asp-action="RegistrarTemporada" asp-controller="Admin" method="post">
+                            <h4 style="color: white">Ingresar temporada</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="nombre" name="nombre" required>
+                                <span class="form-label">Nombre de temporada</span>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="date" id="fecha_llegada" name="fecha_llegada" required>
-                                        <span class="form-label">Fecha de llegada</span>
+                                        <input class="form-control" type="date" id="fechaInicio" name="fechaInicio" required>
+                                        <span class="form-label">Fecha inicial</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="date" id="fecha_salida" name="fecha_salida" required>
-                                        <span class="form-label">Fecha de salida</span>
+                                        <input class="form-control" type="date" id="fechaFin" name="fechaFin" required>
+                                        <span class="form-label">Fecha final</span>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <select class="form-control" name="tipo_habitacion" id="tipo_habitacion" required>
-                                    <option selected disabled>Tipo de habitacion</option>
-                                    <option value="0">Todos</option>
-                                    <option value="1">Standar</option>
-                                    <option value="2">Junior</option>
-
-
-                                </select>
-                                <span class="select-arrow"></span>
+                                <input class="form-control" type="number" step="0.1" id="multiplicador" name="multiplicador" required>
+                                <span class="form-label">Multiplicador de precio</span>
                             </div>
+
+
                             <div class="form-btn">
-                                <button class="submit-btn">Consultar</button>
+                                <button class="submit-btn">Ingresar</button>
                             </div>
                         </form>
                     </div>
@@ -291,19 +305,29 @@
                 <table class="table" style="background-color: #FFFF !important;">
                     <thead>
                         <tr>
-                            <th scope="col">Numero habitacion</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Costo Estadia</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fecha Inicial</th>
+                            <th scope="col">Fecha Final</th>
+                            <th scope="col">Multiplicador</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>@item.id_habitacion</td>
-                                <td>@item.nombre</td>
-                                <td>@item.precio</td>
-                            </tr>
+                        <tr>
+                            <form asp-action="ActualizarTemporada" asp-controller="Admin" method="post">
+                                <input id="id" name="id" class="form-control" value="@item.Id" hidden/>
+                                <td><input id="nombre" name="nombre" class="form-control" value="@item.Nombre" /> </td>
+                                <td><input id="fechaInicio" name="fechaInicio" class="form-control" value="@item.FechaInicio" /> </td>
+                                <td><input id="fechaFin" name="fechaFin" class="form-control" value="@item.FechaFinal" /> </td>
+                                <td><input id="multiplicador" name="multiplicador" class="form-control" value="@item.multiplicador" /></td>
+                                <td><button type="submit" class="btn-warning form-control">Actualizar</button></td>
+                            </form>
+                            <form asp-action="EliminarTemporada" asp-controller="Admin" method="post">
+                                <td><input id="id" name="id" class="form-control" value="@item.Id" hidden /></td>
+                                <td><button type="submit" class="btn-danger form-control">Eliminar</button></td>
+                            </form>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -311,5 +335,4 @@
         </div>
         <br><br>
     }
-
 </main><!-- End #main -->
