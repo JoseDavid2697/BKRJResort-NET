@@ -37,6 +37,8 @@ namespace HotelBKRJResort.Models.Business
 
             return temporadaData.ActualizarTemporada(id, nombre, fechaInicio, fechaFin, multiplicador);
         }
+        
+        
 
         public List<Temporada> EliminarTemporada(int id)
         {
@@ -44,6 +46,7 @@ namespace HotelBKRJResort.Models.Business
 
             return temporadaData.EliminarTemporada(id);
         }
-
+      
+        
     }
 }

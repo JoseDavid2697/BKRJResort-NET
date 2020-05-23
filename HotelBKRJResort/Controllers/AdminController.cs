@@ -47,6 +47,17 @@ namespace HotelBKRJResort.Controllers
         }
 
         [HttpPost]
+        public IActionResult RegistrarOferta(String nombre, String descripcion, String linkDestino)
+        {
+            OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
+
+            List<Oferta> ofertas = ofertaBusiness.RegistrarOferta(nombre, descripcion, linkDestino);
+
+            return View("Ofertas", ofertas);
+        }
+
+
+        [HttpPost]
         public IActionResult ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
         {
             System.Diagnostics.Debug.WriteLine(id);
@@ -58,7 +69,8 @@ namespace HotelBKRJResort.Controllers
 
             return View("Temporadas", temporadas);
         }
-
+        
+        
         [HttpPost]
         public IActionResult EliminarTemporada(int id)
         {
@@ -69,13 +81,39 @@ namespace HotelBKRJResort.Controllers
 
             return View("Temporadas", temporadas);
         }
+        [HttpPost]
+        public IActionResult EliminarOferta(int id)
+        {
+            System.Diagnostics.Debug.WriteLine(id);
+            OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
 
-        
+            List<Oferta> ofertas = ofertaBusiness.EliminarOferta(id);
+
+            return View("Ofertas", ofertas);
+        }
+
         public IActionResult Ofertas()
         {
             return View();
         }
+        public IActionResult OfertasAdmin()
+        {
+            OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
 
+            List<Oferta> ofertas = ofertaBusiness.ObtenerOfertasAdmin();
+
+            return View("Ofertas", ofertas);
+        }
+        [HttpPost]
+        public IActionResult ActualizarOfertas(int id, String nombre, String descripcion, String linkDestino)
+        {
+
+            OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
+
+            List<Oferta> ofertas = ofertaBusiness.ActualizarOferta(id, nombre, descripcion, linkDestino);
+
+            return View("Ofertas", ofertas);
+        }
         [HttpPost]
         public IActionResult ValidarUsuario(String usuario, String contra)
         {
