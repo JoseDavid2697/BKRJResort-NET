@@ -23,5 +23,12 @@ namespace HotelBKRJResort.Models.Business
 
             return habitacionData.obtenerEstadoHabitaciones();
         }
+
+        public List<Habitacion> obtenerDisponibilidadHabitaciones(String fecha_llegada, String fecha_salida, int tipo_habitacion)
+        {
+            HabitacionData habitacionData = new HabitacionData(this.Configuration);
+
+            return habitacionData.obtenerDisponibilidadHabitaciones(fecha_llegada,fecha_salida,tipo_habitacion);
+        }
     }
 }

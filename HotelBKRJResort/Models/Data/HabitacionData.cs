@@ -23,6 +23,8 @@ namespace HotelBKRJResort.Models.Data
             List<Habitacion> habitaciones = new List<Habitacion>();
             
             string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+
+
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -53,5 +55,50 @@ namespace HotelBKRJResort.Models.Data
             }
         }
 
+        public List<Habitacion> obtenerDisponibilidadHabitaciones(String fecha_llegada, String fecha_salida, int tipo_habitacion)
+        {
+            List<Habitacion> habitaciones = new List<Habitacion>();
+            
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+
+            
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_consultarDisponibilidadHabitaciones]'{fecha_llegada}','{fecha_salida}',{tipo_habitacion}";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            Habitacion habitacion = new Habitacion();
+                            if (Convert.ToInt32(dataReader["resultado"]) == 1)
+                            {
+                               
+                                habitacion.id_habitacion = Convert.ToInt32(dataReader["id"]);
+                                habitacion.nombre = Convert.ToString(dataReader["tipo"]);
+                                habitacion.precio = Convert.ToInt32(dataReader["costo"]);
+                                habitacion.resultado = Convert.ToInt32(dataReader["resultado"]);
+                            }
+                            else
+                            {
+                                habitacion.resultado = Convert.ToInt32(dataReader["resultado"]);
+
+                            }
+
+
+
+                            habitaciones.Add(habitacion);
+                        }
+
+                    }
+                }
+
+                return habitaciones;
+            }
+        }
     }
 }

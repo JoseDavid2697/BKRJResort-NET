@@ -68,5 +68,34 @@ namespace HotelBKRJResort.Controllers
             return View("Habitaciones", habitaciones);
         }
 
+        public IActionResult ConsultarHabitacion()
+        {
+            return View("ConsultarHabitacion", null);
+        }
+
+        [HttpPost]
+        public IActionResult  ResultadoConsultarHabitacion(String fecha_llegada, String fecha_salida, int tipo_habitacion)
+        {
+            HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
+
+            List<Habitacion> habitaciones = habitacionBusiness.obtenerDisponibilidadHabitaciones(fecha_llegada,fecha_salida,tipo_habitacion);
+
+            int res = 0;
+            foreach (var item in habitaciones)
+            {
+                res = item.resultado;
+            }
+
+            if (res == 0)
+            {
+                return View("ConsultarHabitacion", null);
+            }
+            else
+            {
+                return View("ConsultarHabitacion", habitaciones);
+            }
+            
+        }
+
     }
 }

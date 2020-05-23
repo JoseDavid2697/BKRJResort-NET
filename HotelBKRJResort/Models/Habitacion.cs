@@ -16,6 +16,8 @@ namespace HotelBKRJResort.Models
         public string descripcion { get; set; }
         public string fecha_inicio { get; set; }
         public string fecha_final { get; set; }
+
+        public int precio { get; set; }
     }
 }
 
