@@ -58,7 +58,6 @@ namespace HotelBKRJResort.Models.Data
 
         public List<Oferta> ObtenerOfertasAdmin()
         {
-
             List<Oferta> ofertas = new List<Oferta>();
 
             string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
@@ -125,9 +124,7 @@ namespace HotelBKRJResort.Models.Data
                             oferta.Id = Convert.ToInt32(dataReader["id"]);
                             oferta.Nombre = Convert.ToString(dataReader["nombre"]);
                             oferta.Descripcion = Convert.ToString(dataReader["descripcion"]);
-                            oferta.Imagen = Convert.ToString(dataReader["imagen"]);
                             oferta.Link_Destino = Convert.ToString(dataReader["link_destino"]);
-
 
                             ofertas.Add(oferta);
                         }
