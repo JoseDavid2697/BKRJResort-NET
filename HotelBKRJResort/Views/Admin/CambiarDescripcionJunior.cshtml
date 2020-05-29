@@ -1,7 +1,9 @@
-﻿@{
-    Layout = "_Layout";
+﻿
+@{
+    ViewData["Title"] = "CambiarDescripcionJunior";
 }
-@model List<Habitacion>
+
+@model Tarifa
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -41,61 +43,43 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Habitaciones</h2>
+                <h2>Administrar Habitaciones</h2>
                 <ol>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li>Habitaciones</li>
+                    <li><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                    <li>Administrar Habitaciones</li>
                 </ol>
             </div>
 
         </div>
     </section><!-- End Breadcrumbs -->
-    <!-- ======= Pricing Section ======= -->
+    <br><br>
     <section id="features" class="features">
         <div class="container">
             <br />
             <div class="row">
 
-
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-4">
-                        <div class="tab-content">
-                            <div class="tab-pane active show" id="tab-1">
-                                <figure>
-                                    <img src="@item.imagen" alt="imagen" class="img-fluid">
-                                </figure>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <br> <br>
-                        <h4>Número de habitación: @item.id_habitacion</h4>
-                        <br>
-                        <h4>Tipo de habitación: @item.nombre</h4>
-                        <br>
-
-                        @if (item.estado == 0)
-                        {
-                            <h4>Estado: Ocupada</h4>
-                            <h5>Disponible a partir de @item.fecha_final</h5>
-                        }
-                        else
-                        {
-                            <h4>Estado: Disponible</h4>
-                        }
-
-                        <br>
-                        <br>
-                    </div>
-                }
+                <div class="col-md-12">
+                    <form asp-action="" asp-controller="">
+                        <h4>Standard </h4> <br />
+                        <h4>Tarifa diaria:</h4>
+                        <input type="text" name="Precio" id="Precio" value="@Model.Precio" />
+                        <br /><br /><br />
+                        <textarea rows="6" cols="100" name="Descripcion" id="Descripcion">@Model.Descripcion</textarea>
+                        <br /><br /><br />
+                        <img src="@Model.Imagen" name="Imagen" id="Imagen" alt="Imagen standard" />
+                        <br /><br />
+                        <input type="file">
+                        <br /><br />
+                        <button type="submit">Aceptar</button>
+                        <button >Cancelar</button>
+                    </form>
+                </div>
             </div>
 
         </div>
 
 
     </section><!-- End Pricing Section -->
-
+    <br><br>
 
 </main><!-- End #main -->

@@ -23,5 +23,19 @@ namespace HotelBKRJResort.Models.Business
 
             return tarifaData.ObtenerTarifas();
         }
+
+        public Tarifa ObtenerTarifaStandard()
+        {
+            TarifaData tarifaData = new TarifaData(this.Configuration);
+
+            return tarifaData.ObtenerTarifaStandard();
+        }
+
+        public Tarifa ObtenerTarifaJunior()
+        {
+            TarifaData tarifaData = new TarifaData(this.Configuration);
+
+            return tarifaData.ObtenerTarifaJunior();
+        }
     }
 }

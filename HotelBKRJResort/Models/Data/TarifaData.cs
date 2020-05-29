@@ -52,5 +52,75 @@ namespace HotelBKRJResort.Models.Data
 
             return tarifas;
         }
+
+        public Tarifa ObtenerTarifaStandard()
+        {
+
+            Tarifa t = new Tarifa();
+
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtener_tarifa_standard]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+
+                            t.Precio = Convert.ToInt32(dataReader["precio"]);
+                            t.Descripcion = Convert.ToString(dataReader["descripcion"]);
+                            t.Imagen = Convert.ToString(dataReader["imagen"]);
+                                
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+
+            return t;
+        }
+        public Tarifa ObtenerTarifaJunior()
+        {
+
+            Tarifa t = new Tarifa();
+
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtener_tarifa_junior]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+
+                            t.Precio = Convert.ToInt32(dataReader["precio"]);
+                            t.Descripcion = Convert.ToString(dataReader["descripcion"]);
+                            t.Imagen = Convert.ToString(dataReader["imagen"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+
+            return t;
+        }
+        
     }
 }
