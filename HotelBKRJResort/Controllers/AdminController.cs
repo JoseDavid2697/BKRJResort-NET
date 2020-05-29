@@ -185,5 +185,24 @@ namespace HotelBKRJResort.Controllers
             
         }
 
+        public IActionResult AdministrarHabitaciones()
+        {
+            return View("AdministrarHabitaciones");
+        }
+
+        public IActionResult CambiarDescripcionStandard()
+        {
+            TarifaBusiness tb = new TarifaBusiness(this.Configuration);
+
+            return View("CambiarDescripcionStandard",tb.ObtenerTarifaStandard());
+        }
+
+        public IActionResult CambiarDescripcionJunior()
+        {
+            TarifaBusiness tb = new TarifaBusiness(this.Configuration);
+
+            return View("CambiarDescripcionJunior", tb.ObtenerTarifaJunior());
+        }
+
     }
 }
