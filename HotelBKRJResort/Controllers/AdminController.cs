@@ -8,6 +8,8 @@ using HotelBKRJResort.Models.Business;
 using HotelBKRJResort.Models.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using System.Web;
+using System.IO;
 
 namespace HotelBKRJResort.Controllers
 {
@@ -204,5 +206,21 @@ namespace HotelBKRJResort.Controllers
             return View("CambiarDescripcionJunior", tb.ObtenerTarifaJunior());
         }
 
+        public IActionResult ActualizarTarifa(int id, int precio, String descripcion)
+        {
+            String mensaje = "Actualizado con exito";
+            try
+            {
+                TarifaBusiness tb = new TarifaBusiness(this.Configuration);
+                tb.ActualizarTarifa(id, precio, descripcion);
+            }
+            catch {
+                mensaje = "Error al actualizar";
+            }
+            
+
+            return View("AdministrarHabitaciones", mensaje);
+        }
+        
     }
 }

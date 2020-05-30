@@ -3,7 +3,7 @@
     ViewData["Title"] = "AdministrarHabitaciones";
 }
 
-@model List<Habitacion>
+@model String
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -70,12 +70,21 @@
                 <div class="col-md-12">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-1">
-                            <h1>Junior <a asp-controller="Admin" asp-action="CambiarDescripcionJunior" >cambiar descripcion</a></h1>
+                            <h1>Junior <a asp-controller="Admin" asp-action="CambiarDescripcionJunior">cambiar descripcion</a></h1>
                         </div>
 
                     </div>
                 </div>
             </div>
+            <br><br>
+
+            @if (Model != null)
+            {
+                <div class="alert alert-success" id="al1" role="alert" style="display: block; text-align:center">
+                    @Model
+                </div>
+                <br><br>
+            }
 
         </div>
 
