@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -87,6 +88,7 @@ namespace HotelBKRJResort.Models.Data
 
             return t;
         }
+
         public Tarifa ObtenerTarifaJunior()
         {
 
@@ -121,6 +123,28 @@ namespace HotelBKRJResort.Models.Data
 
             return t;
         }
-        
+
+        public void ActualizarTarifa(int id, double precio, String descripcion)
+        {
+
+            List<Temporada> temporadas = new List<Temporada>();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+
+                string sql = $"EXEC [dbo].[sp_actualizar_tarifa]'{id}','{precio}','{descripcion}'";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            
+        }
+
     }
 }

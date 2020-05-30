@@ -59,20 +59,22 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form asp-action="" asp-controller="">
+                    <form asp-controller="Admin" asp-action="ActualizarTarifa" enctype="multipart/form-data">
                         <h4>Standard </h4> <br />
+                        <input type="text" name="id" id="id" value="1" hidden />
                         <h4>Tarifa diaria:</h4>
                         <input type="text" name="Precio" id="Precio" value="@Model.Precio" />
                         <br /><br /><br />
                         <textarea rows="6" cols="100" name="Descripcion" id="Descripcion">@Model.Descripcion</textarea>
                         <br /><br /><br />
-                        <img src="@Model.Imagen" name="Imagen" id="Imagen" alt="Imagen standard" />
+                        <img src="@Model.Imagen" name="imagen" id="imagen" alt="Imagen standard" />
                         <br /><br />
-                        <input type="file">
+                        <input type="file" name="img" id="img">
                         <br /><br />
-                        <button type="submit">Aceptar</button>
-                        <button>Cancelar</button>
+                        <button class="btn btn-success" type="submit">Aceptar</button>
+                        <a class="btn btn-danger" asp-controller="Admin" asp-action="AdministrarHabitaciones">Cancelar</a>
                     </form>
+
                 </div>
 
             </div>
