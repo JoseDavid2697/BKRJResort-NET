@@ -17,5 +17,7 @@ namespace HotelBKRJResort.Models
         public int monto { get; set; }
 
         public String codigo { get; set; }
+
+        public String identificacion { get; set; }
     }
 }
