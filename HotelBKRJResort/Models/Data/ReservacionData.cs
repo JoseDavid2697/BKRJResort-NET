@@ -67,7 +67,7 @@ namespace HotelBKRJResort.Models.Data
             {
                 connection.Open();
 
-                string sql = $"EXEC [dbo].[sp_insertar_reserva]{reservacion.id_habitacion},{reservacion.monto},'{reservacion.fecha_inicio.ToString("yyyy-MM-dd")}','{reservacion.fecha_final.ToString("yyyy-MM-dd")}','{reservacion.nombre}','{reservacion.apellidos}','{reservacion.email}','{reservacion.tarjeta}','{reservacion.codigo}'";
+                string sql = $"EXEC [dbo].[sp_insertar_reserva]{reservacion.id_habitacion},{reservacion.monto},'{reservacion.fecha_inicio.ToString("yyyy-MM-dd")}','{reservacion.fecha_final.ToString("yyyy-MM-dd")}','{reservacion.nombre}','{reservacion.apellidos}','{reservacion.email}','{reservacion.tarjeta}','{reservacion.codigo}','{reservacion.identificacion}'";
                 using (var command = new SqlCommand(sql, connection))
                 {
                     command.ExecuteNonQuery();
