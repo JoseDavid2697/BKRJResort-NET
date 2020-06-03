@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using HotelBKRJResort.Models;
 using Microsoft.Extensions.Configuration;
 using HotelBKRJResort.Models.Business;
+using Newtonsoft.Json;
+
 
 namespace HotelBKRJResort.Controllers
 {
@@ -95,7 +97,15 @@ namespace HotelBKRJResort.Controllers
 
             return View("ResultadoHabitacion", contenedor);
         }
+        [HttpPost]
+        public string obtenerUsuario(String identificacion)
+        {
+            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+            Usuario u = reservacionBusiness.obtenerUsuario(identificacion);
+            string output = JsonConvert.SerializeObject(u);
+            return output;
 
-       
+        }
+
     }
 }

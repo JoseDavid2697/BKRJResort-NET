@@ -63,11 +63,11 @@
                         <h4>Junior </h4> <br />
                         <input type="text" name="id" id="id" value="2" hidden/>
                         <h4>Tarifa diaria:</h4>
-                        <input type="text" name="Precio" id="Precio" value="@Model.Precio" />
+                        <input type="text" name="Precio" id="Precio" value="@Model.Precio" required/>
                         <br /><br /><br />
-                        <textarea rows="6" cols="100" name="Descripcion" id="Descripcion">@Model.Descripcion</textarea>
+                        <textarea rows="6" cols="100" name="Descripcion" id="Descripcion" required>@Model.Descripcion</textarea>
                         <br /><br /><br />
-                        <img src="@Model.Imagen" name="Imagen" id="Imagen" alt="Imagen standard" />
+                        <img src="@Model.Imagen" name="Imagen" id="Imagen" alt="Imagen standard" class="img img-fluid" width="400px" height="400px" />
                         <br /><br />
                         <input type="file" name="img" id="img">
                         <br /><br />

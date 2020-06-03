@@ -39,7 +39,7 @@ namespace HotelBKRJResort.Controllers
 
 
         [HttpPost]
-        public IActionResult RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public IActionResult RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
             TemporadaBusiness temporadaBusiness = new TemporadaBusiness(this.Configuration);
 
@@ -60,7 +60,7 @@ namespace HotelBKRJResort.Controllers
 
 
         [HttpPost]
-        public IActionResult ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public IActionResult ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
             System.Diagnostics.Debug.WriteLine(id);
             System.Diagnostics.Debug.WriteLine(nombre);
