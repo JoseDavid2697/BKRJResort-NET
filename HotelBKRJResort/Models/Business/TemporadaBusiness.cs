@@ -24,14 +24,14 @@ namespace HotelBKRJResort.Models.Business
             return temporadaData.ObtenerTemporadas();
         }
 
-        public List<Temporada> RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public List<Temporada> RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
             TemporadaData temporadaData = new TemporadaData(this.Configuration);
 
             return temporadaData.RegistrarTemporada(nombre, fechaInicio, fechaFin, multiplicador);
         }
 
-        public List<Temporada> ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public List<Temporada> ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
             TemporadaData temporadaData = new TemporadaData(this.Configuration);
 

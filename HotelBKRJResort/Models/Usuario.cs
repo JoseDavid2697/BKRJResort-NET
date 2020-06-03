@@ -11,5 +11,9 @@ namespace HotelBKRJResort.Models
         public string usuario { get; set; }
         public string contra { get; set; }
         public int tipo { get; set; }
+        public string nombre { get; set; }
+        public string apellidos { get; set; }
+        public string email { get; set; }
+        public string tarjeta { get; set; }
     }
 }

@@ -75,5 +75,37 @@ namespace HotelBKRJResort.Models.Data
                 }
             }
         }
+        public Usuario obtenerUsuario(String identificacion)
+        {
+
+            Usuario usuario = new Usuario();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtener_datos_usuario]'{identificacion}'";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+
+                        dataReader.Read();
+                        if (Convert.ToInt32(dataReader["resultado"]) != 0)
+                        {
+                            usuario.nombre = dataReader["nombreCliente"].ToString();
+                            usuario.apellidos = dataReader["apellidosCliente"].ToString();
+                            usuario.email = dataReader["coreoCliente"].ToString();
+                            usuario.tarjeta = dataReader["cuentaCliente"].ToString();
+                            
+                        }
+                    }
+                    connection.Close();
+                }
+                return usuario;
+            }
+        }
+        
     }
 }

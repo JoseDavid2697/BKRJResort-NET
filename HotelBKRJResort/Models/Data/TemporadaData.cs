@@ -54,7 +54,7 @@ namespace HotelBKRJResort.Models.Data
             return temporadas;
         }
         
-        public List<Temporada> RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public List<Temporada> RegistrarTemporada(String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
 
             List<Temporada> temporadas = new List<Temporada>();
@@ -103,11 +103,11 @@ namespace HotelBKRJResort.Models.Data
         }
         
            
-        public List<Temporada> ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, float multiplicador)
+        public List<Temporada> ActualizarTemporada(int id, String nombre, String fechaInicio, String fechaFin, String multiplicador)
         {
-
+            
             List<Temporada> temporadas = new List<Temporada>();
-
+            System.Diagnostics.Debug.WriteLine("Multiplicador=>>>>>>"+multiplicador);
             string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
 
             using (var connection = new SqlConnection(connectionString))
