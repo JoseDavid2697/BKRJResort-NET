@@ -46,5 +46,13 @@ namespace HotelBKRJResort.Models.Business
             tarifaData.ActualizarTarifa(id, precio, descripcion);
 
         }
+
+        public List<Habitacion> ObtenerHabitaciones(int idTarifa)
+        {
+
+            TarifaData tarifaData = new TarifaData(this.Configuration);
+
+            return tarifaData.ObtenerHabitaciones(idTarifa);
+        }
     }
 }

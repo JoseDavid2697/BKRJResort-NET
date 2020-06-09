@@ -77,7 +77,7 @@ namespace HotelBKRJResort.Models.Data
                             t.Precio = Convert.ToInt32(dataReader["precio"]);
                             t.Descripcion = Convert.ToString(dataReader["descripcion"]);
                             t.Imagen = Convert.ToString(dataReader["imagen"]);
-                                
+
                         }
 
                     }
@@ -143,8 +143,38 @@ namespace HotelBKRJResort.Models.Data
                     connection.Close();
                 }
             }
-            
+
         }
 
+        public List<Habitacion> ObtenerHabitaciones(int idTarifa)
+        {
+            List<Habitacion> habitacionesStandard = new List<Habitacion>();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC sp_obtener_habitaciones {idTarifa}";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            Habitacion h = new Habitacion();
+
+                            h.id_habitacion = Convert.ToInt32(dataReader["id"]);
+                            h.estado = Convert.ToInt32(dataReader["estado"]);
+                            habitacionesStandard.Add(h);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+            return habitacionesStandard;
+        }
     }
 }
