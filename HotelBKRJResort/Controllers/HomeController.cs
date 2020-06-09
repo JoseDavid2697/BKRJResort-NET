@@ -36,8 +36,9 @@ namespace HotelBKRJResort.Controllers
 
         public IActionResult SobreNosotros()
         {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
 
-            return View();
+            return View("SobreNosotros", vb.obtenerSobreNosotros());
         }
 
         public IActionResult Facilidades()

@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_Layout";
 }
-
+@model Vista
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -53,31 +53,30 @@
                 <div class="image col-xl-6 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right"></div>
                 <div class="col-xl-6 pl-0 pl-lg-5 pr-lg-1 d-flex align-items-stretch">
                     <div class="content d-flex flex-column justify-content-center">
-                        <h3 data-aos="fade-up">Nos caracterizamos por ser de los mejores en lo que hacemos</h3>
+                        <h3 data-aos="fade-up">@Model.titulo</h3>
                         <p data-aos="fade-up">
-                            Nuestro resort nace con la filosofía de poner a nuestros clientes como prioridad, a lo largo de los años nos hemos encargado de tomar las críticas con el fin de mejorar y crecer en todos los aspectos.
-                            Es por eso que ofrecemos lo mejor a nuestros clientes para que disfruten de una estadía inolvidable en nuestras instalaciones. Nuestra experiencia de más de 20 años nos permite ofrecer lo mejor y lo que nuestros huéspedes se merecen.
+                            @Model.descripcion
                         </p>
                         <div class="row">
                             <div class="col-md-6 icon-box" data-aos="fade-up">
                                 <i class="bx bx-receipt"></i>
                                 <h4>Reconocimientos</h4>
-                                <p>Contamos con reconocimientos a lo largo del pais, lo que no ha llevado a ser de los mejores tanto dentro como fuera de nuestras fronteras</p>
+                                <p>@Model.reconocimientos</p>
                             </div>
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                                 <i class="bx bx-cube-alt"></i>
                                 <h4>Alianzas</h4>
-                                <p>Nuestras alianzas, le permitiran disfrutar de diferentes opciones turísticas alrededor del hotel</p>
+                                <p>@Model.alianzas</p>                            
                             </div>
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
                                 <i class="bx bx-images"></i>
                                 <h4>Experiencias</h4>
-                                <p>Gracias a nuestra ubicación, contamos con el mejor ambiente para el disfrute de las personas, hermosas playas, permiten disfrutar de atardeceres inolvidables</p>
+                                <p>@Model.experiencias</p>                
                             </div>
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
                                 <i class="bx bx-shield"></i>
                                 <h4>Seguridad</h4>
-                                <p>Somos unos de los hoteles más seguros en todo Costa Rica!, nuestro sistema de seguridad velará por la seguridad de nuestros huéspedes y sus pertenencias</p>
+                                <p>@Model.seguridad</p>              
                             </div>
                         </div>
                     </div><!-- End .content-->
