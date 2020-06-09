@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model Vista
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Home" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!--<a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Admin" asp-action="verificarEstadoHabitaciones">Habitaciones</a></li>
+                <li><a asp-controller="Admin" asp-action="ConsultarHabitacion">Disponibilidad de habitacion</a></li>
+                <li><a asp-controller="Admin" asp-action="AdministrarHabitaciones">Administrar habitaciones</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GESTIONAR
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Temporadas">Temporadas</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="OfertasAdmin">Ofertas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        VISTAS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Home">Home</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="SobreNosotros">Sobre Nosotros</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Facilidades">Facilidades</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="ComoLlegar">Como Llegar</a>
+
+                    </div>
+                </li>
+                <li><a asp-controller="Home" asp-action="Index">Cerrar Sesión</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Editar Sobre Nosotros</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Editar Sobre Nosotros</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= About Us Section ======= -->
+    <section id="about-us" class="about-us">
+        <div class="container">
+
+            <div class="row no-gutters">
+                <div class="image col-xl-6 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right"></div>
+                <div class="col-xl-6 pl-0 pl-lg-5 pr-lg-1 d-flex align-items-stretch">
+                    <form asp-controller="Admin" asp-action="ActualizarSobreNosotros" enctype="multipart/form-data">
+                        <div class="content d-flex flex-column justify-content-center">
+                            <h4 data-aos="fade-up">Título</h4>
+                            <textarea required rows="3" cols="50" name="titulo" id="titulo">@Model.titulo</textarea>
+
+                            <br />
+
+                            <h4 data-aos="fade-up">Descripción</h4>
+                            <textarea required rows="7" cols="70" name="descripcion" id="descripcion">@Model.descripcion</textarea>
+
+                            <div class="row">
+                                <div class="col-md-6 icon-box" data-aos="fade-up">
+                                    <i class="bx bx-receipt"></i>
+                                    <h4>Reconocimientos</h4>
+                                    <textarea required rows="6" cols="30" name="reconocimientos" id="reconocimientos">@Model.reconocimientos</textarea>
+                                </div>
+                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                                    <i class="bx bx-cube-alt"></i>
+                                    <h4>Alianzas</h4>
+                                    <textarea required rows="6" cols="30" name="alianzas" id="alianzas">@Model.alianzas</textarea>
+                                </div>
+                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                                    <i class="bx bx-images"></i>
+                                    <h4>Experiencias</h4>
+                                    <textarea required rows="6" cols="30" name="experiencias" id="experiencias">@Model.experiencias</textarea>
+                                </div>
+                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                                    <i class="bx bx-shield"></i>
+                                    <h4>Seguridad</h4>
+                                    <textarea required rows="6" cols="30" name="seguridad" id="seguridad">@Model.seguridad</textarea>
+                                </div>
+
+                            </div>
+                            <br />
+                            <center>
+                                <button type="submit" class="btn btn-success">Actualizar</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+    
+
+</main><!-- End #main -->
+

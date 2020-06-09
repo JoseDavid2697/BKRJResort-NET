@@ -221,6 +221,23 @@ namespace HotelBKRJResort.Controllers
 
             return View("AdministrarHabitaciones", mensaje);
         }
+
+        //--------------ACTUALIZAR VISTAS--------------
+
+        public IActionResult SobreNosotros()
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("SobreNosotrosEditable", vb.obtenerSobreNosotros());
+        }
+
+        public IActionResult ActualizarSobreNosotros(Vista vista)
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("SobreNosotrosEditable", vb.actualizarSobreNosotros(vista));
+        }
         
+
     }
 }
