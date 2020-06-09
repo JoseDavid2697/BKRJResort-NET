@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "AdministrarHabitaciones";
 }
-
-@model String
+<script src="~/assets/js/script.js"></script>
+@model ObjetoContenedorPrincipal
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -78,6 +78,25 @@
 
                     </div>
                 </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número de habitación</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.HabitacionesStandard)
+                    {
+                        <tbody>
+                            <tr>
+                                <th scope="row">@item.id_habitacion </th>
+                                <td><input type="checkbox" value="@item.id_habitacion" id="@item.id_habitacion" onclick="cambiarEstado(this)">
+                                <script>activar(@item.id_habitacion,@item.estado);</script><p>Activa ?</p></td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
                 <br /><br /><br /><br /><br /><br />
                 <div class="col-md-12">
                     <div class="tab-content">
@@ -87,13 +106,33 @@
 
                     </div>
                 </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número de habitación</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.HabitacionesJunior)
+                    {
+                        <tbody>
+                            <tr>
+                                <th scope="row">@item.id_habitacion </th>
+                                <td>
+                                    <input type="checkbox" value="@item.id_habitacion" id="@item.id_habitacion" onclick="cambiarEstado(this)">
+                                    <script>activar(@item.id_habitacion,@item.estado);</script><p>Activa ?</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
             </div>
             <br><br>
 
-            @if (Model != null)
+            @if (Model.Mensaje != null)
             {
                 <div class="alert alert-success" id="al1" role="alert" style="display: block; text-align:center">
-                    @Model
+                    @Model.Mensaje
                 </div>
                 <br><br>
             }

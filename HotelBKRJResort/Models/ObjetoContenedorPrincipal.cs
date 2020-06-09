@@ -11,9 +11,13 @@ namespace HotelBKRJResort.Models
         public List<Oferta> Ofertas { get; set; }
 
         public List<Tarifa> Tarifas { get; set; }
+        public List<Habitacion> HabitacionesStandard { get; set; }
+        public List<Habitacion> HabitacionesJunior { get; set; }
 
         public Habitacion Habitacion { get; set; }
 
         public MensajeReserva mensaje {get; set;}
+        
+        public String Mensaje { get; set; }
     }
 }

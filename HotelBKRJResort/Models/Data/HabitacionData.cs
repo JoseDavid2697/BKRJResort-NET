@@ -18,6 +18,7 @@ namespace HotelBKRJResort.Models.Data
         }
 
 
+
         public List<Habitacion> obtenerEstadoHabitaciones()
         {
             List<Habitacion> habitaciones = new List<Habitacion>();
@@ -98,6 +99,22 @@ namespace HotelBKRJResort.Models.Data
                 }
 
                 return habitaciones;
+            }
+        }
+
+        public void actualizarEstado(int idHabitacion, int estado)
+        {
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC sp_actualizar_estado_habitacion {idHabitacion},{estado}";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
             }
         }
     }

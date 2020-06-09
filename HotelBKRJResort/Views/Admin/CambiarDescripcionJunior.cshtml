@@ -71,11 +71,11 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form asp-controller="Admin" asp-action="ActualizarTarifa">
+                    <form asp-controller="Admin" asp-action="ActualizarTarifa" enctype="multipart/form-data">
                         <h4>Junior </h4> <br />
-                        <input type="text" name="id" id="id" value="2" hidden/>
+                        <input type="text" name="id" id="id" value="2" hidden />
                         <h4>Tarifa diaria:</h4>
-                        <input type="text" name="Precio" id="Precio" value="@Model.Precio" required/>
+                        <input type="text" name="Precio" id="Precio" value="@Model.Precio" required />
                         <br /><br /><br />
                         <textarea rows="6" cols="100" name="Descripcion" id="Descripcion" required>@Model.Descripcion</textarea>
                         <br /><br /><br />

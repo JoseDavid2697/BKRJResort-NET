@@ -10,16 +10,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System.Web;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.IO;
+
 
 namespace HotelBKRJResort.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IHostingEnvironment hostingEnvironment;
         public IConfiguration Configuration { get; }
 
-        public AdminController(IConfiguration configuration)
+        public AdminController(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             this.Configuration = configuration;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
 
@@ -71,8 +77,8 @@ namespace HotelBKRJResort.Controllers
 
             return View("Temporadas", temporadas);
         }
-        
-        
+
+
         [HttpPost]
         public IActionResult EliminarTemporada(int id)
         {
@@ -147,13 +153,13 @@ namespace HotelBKRJResort.Controllers
             return View("Admin", contenedor);
         }
 
-        
+
         public IActionResult verificarEstadoHabitaciones()
         {
             HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
 
             List<Habitacion> habitaciones = habitacionBusiness.obtenerEstadoHabitaciones();
-            
+
 
             return View("Habitaciones", habitaciones);
         }
@@ -164,11 +170,11 @@ namespace HotelBKRJResort.Controllers
         }
 
         [HttpPost]
-        public IActionResult  ResultadoConsultarHabitacion(String fecha_llegada, String fecha_salida, int tipo_habitacion)
+        public IActionResult ResultadoConsultarHabitacion(String fecha_llegada, String fecha_salida, int tipo_habitacion)
         {
             HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
 
-            List<Habitacion> habitaciones = habitacionBusiness.obtenerDisponibilidadHabitaciones(fecha_llegada,fecha_salida,tipo_habitacion);
+            List<Habitacion> habitaciones = habitacionBusiness.obtenerDisponibilidadHabitaciones(fecha_llegada, fecha_salida, tipo_habitacion);
 
             int res = 0;
             foreach (var item in habitaciones)
@@ -184,19 +190,25 @@ namespace HotelBKRJResort.Controllers
             {
                 return View("ConsultarHabitacion", habitaciones);
             }
-            
+
         }
 
         public IActionResult AdministrarHabitaciones()
         {
-            return View("AdministrarHabitaciones");
+            TarifaBusiness tb = new TarifaBusiness(this.Configuration);
+            
+            ObjetoContenedorPrincipal obj = new ObjetoContenedorPrincipal();
+            obj.HabitacionesStandard = tb.ObtenerHabitaciones(1);
+            obj.HabitacionesJunior = tb.ObtenerHabitaciones(2);
+
+            return View("AdministrarHabitaciones",obj);
         }
 
         public IActionResult CambiarDescripcionStandard()
         {
             TarifaBusiness tb = new TarifaBusiness(this.Configuration);
 
-            return View("CambiarDescripcionStandard",tb.ObtenerTarifaStandard());
+            return View("CambiarDescripcionStandard", tb.ObtenerTarifaStandard());
         }
 
         public IActionResult CambiarDescripcionJunior()
@@ -206,20 +218,52 @@ namespace HotelBKRJResort.Controllers
             return View("CambiarDescripcionJunior", tb.ObtenerTarifaJunior());
         }
 
-        public IActionResult ActualizarTarifa(int id, int precio, String descripcion)
+        public IActionResult ActualizarTarifa(int id, int precio, String descripcion, IFormFile img)
         {
-            String mensaje = "Actualizado con exito";
-            try
-            {
-                TarifaBusiness tb = new TarifaBusiness(this.Configuration);
-                tb.ActualizarTarifa(id, precio, descripcion);
-            }
-            catch {
-                mensaje = "Error al actualizar";
-            }
             
+            
+            if (img != null)
+            {
+                var fileName = "";
+                if (id == 2)
+                {
+                    fileName ="junior.jpg";
+                }else if (id == 1)
+                {
+                    fileName = "standard.jpg";
+                }
+                
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/tarifas");
+                var filePath = Path.Combine(uploads, fileName);
+                img.CopyTo(new FileStream(filePath, FileMode.Create));
 
-            return View("AdministrarHabitaciones", mensaje);
+            }
+            TarifaBusiness tb = new TarifaBusiness(this.Configuration);
+            String mensaje = "Actualizado con exito";
+              try
+              {
+                 
+                  tb.ActualizarTarifa(id, precio, descripcion);
+              }
+              catch {
+                  mensaje = "Error al actualizar";
+              }
+
+            ObjetoContenedorPrincipal obj = new ObjetoContenedorPrincipal();
+            obj.HabitacionesStandard = tb.ObtenerHabitaciones(1);
+            obj.HabitacionesJunior = tb.ObtenerHabitaciones(2);
+            obj.Mensaje = mensaje;
+
+            return View("AdministrarHabitaciones", obj);
+        }
+
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
         }
 
         //--------------ACTUALIZAR VISTAS--------------
@@ -237,7 +281,13 @@ namespace HotelBKRJResort.Controllers
 
             return View("SobreNosotrosEditable", vb.actualizarSobreNosotros(vista));
         }
-        
+        [HttpPost]
+        public void actualizarEstado(int idHabitacion, int estado)
+        {
+            HabitacionBusiness hb = new HabitacionBusiness(this.Configuration);
+            hb.actualizarEstado(idHabitacion, estado);
+
+        }
 
     }
 }
