@@ -91,7 +91,7 @@ namespace HotelBKRJResort.Models.Data
             return ofertas;
         }
 
-        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino)
+        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino,string img)
         {
 
             List<Oferta> ofertas = new List<Oferta>();
@@ -102,7 +102,7 @@ namespace HotelBKRJResort.Models.Data
             {
 
 
-                string sql = $"EXEC [dbo].[sp_insertar_oferta]'{nombre}','{descripcion}','/assets/img/promociones/pizzazhut.png','{linkDestino}'";
+                string sql = $"EXEC [dbo].[sp_insertar_oferta]'{nombre}','{descripcion}','/assets/img/promociones/{img}','{linkDestino}'";
                 using (var command = new SqlCommand(sql, connection))
                 {
                     command.CommandType = CommandType.Text;

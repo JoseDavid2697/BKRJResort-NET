@@ -31,11 +31,11 @@ namespace HotelBKRJResort.Models.Business
             return ofertaData.ObtenerOfertas();
         }
 
-        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino)
+        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino,string img)
         {
             OfertaData ofertaData = new OfertaData(this.Configuration);
 
-            return ofertaData.RegistrarOferta(nombre, descripcion, linkDestino);
+            return ofertaData.RegistrarOferta(nombre, descripcion, linkDestino,img);
         }
 
         public List<Oferta> ActualizarOferta(int id, String nombre, String descripcion, String linkDestino)

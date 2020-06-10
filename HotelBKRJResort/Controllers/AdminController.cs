@@ -87,11 +87,14 @@ namespace HotelBKRJResort.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarOferta(String nombre, String descripcion, String linkDestino)
+        public IActionResult RegistrarOferta(String nombre, String descripcion, String linkDestino,IFormFile img)
         {
             OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
+            var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/promociones");
+            var filePath = Path.Combine(uploads, img.FileName);
+            img.CopyTo(new FileStream(filePath, FileMode.Create));
 
-            List<Oferta> ofertas = ofertaBusiness.RegistrarOferta(nombre, descripcion, linkDestino);
+            List<Oferta> ofertas = ofertaBusiness.RegistrarOferta(nombre, descripcion, linkDestino,img.FileName);
 
             return View("Ofertas", ofertas);
         }
