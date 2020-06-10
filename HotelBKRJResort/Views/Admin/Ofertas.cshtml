@@ -274,7 +274,7 @@
             <div class="container">
                 <div class="row">
                     <div class="booking-form">
-                        <form asp-action="RegistrarOferta" asp-controller="Admin" method="post">
+                        <form asp-action="RegistrarOferta" asp-controller="Admin" method="post" enctype="multipart/form-data">
                             <h4 style="color: white">Ingresar Oferta</h4>
                             <div class="form-group">
                                 <input class="form-control" type="text" id="nombre" name="nombre" required>
@@ -284,12 +284,13 @@
                                 <input class="form-control" type="text" id="descripcion" name="descripcion" required>
                                 <span class="form-label">Descripción</span>
                             </div>
-
                             <div class="form-group">
                                 <input class="form-control" type="text" id="linkDestino" name="linkDestino" required>
                                 <span class="form-label">Link de destino</span>
                             </div>
-
+                            <div class="form-group">
+                                <input class="form-control" type="file" id="img" name="img" required>
+                            </div>
 
                             <div class="form-btn">
                                 <button class="submit-btn">Registrar</button>
@@ -317,7 +318,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <form asp-action="ActualizarOfertas" asp-controller="Admin" method="post">
+                                <form asp-action="ActualizarOfertas" asp-controller="Admin" method="post" enctype="multipart/form-data">
                                     <input id="id" name="id" class="form-control" value="@item.Id" hidden />
                                     <td><input id="nombre" name="nombre" class="form-control" value="@item.Nombre" /> </td>
                                     <td><input id="descripcion" name="descripcion" class="form-control" value="@item.Descripcion" /> </td>
