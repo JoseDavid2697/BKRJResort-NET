@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewData["Title"] = "AdministrarHabitaciones";
+    ViewData["Title"] = "Reservaciones";
 }
 <script src="~/assets/js/script.js"></script>
-@model ObjetoContenedorPrincipal
+@model List<Reservacion>
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="container d-flex">
@@ -56,10 +56,10 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Administrar Habitaciones</h2>
+                <h2>Listado de Reservaciones</h2>
                 <ol>
                     <li><a asp-controller="Admin" asp-action="Index">Home</a></li>
-                    <li>Administrar Habitaciones</li>
+                    <li>Listado de Reservaciones</li>
                 </ol>
             </div>
 
@@ -69,75 +69,59 @@
     <section id="features" class="features">
         <div class="container">
             <br />
-            <div class="row">
-
-                <div class="col-md-12">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-1">
-                            <h1>Standard <a asp-controller="Admin" asp-action="CambiarDescripcionStandard">cambiar descripcion</a></h1>
-                        </div>
-
-                    </div>
-                </div>
-                <table class="table">
-                    <thead>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID Reserva</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tarjeta</th>
+                        <th scope="col">Transacción</th>
+                        <th scope="col">Fecha llegada</th>
+                        <th scope="col">Fecha salida</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Ver</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
                         <tr>
-                            <th scope="col">Número de habitación</th>
-                            <th scope="col">Estado</th>
+                            <th>@item.codigo</th>
+                            <th>@item.nombre</th>
+                            <th>@item.apellidos</th>
+                            <th>@item.email</th>
+                            <th>@item.tarjeta</th>
+                            <th>@item.id</th>
+                            <th>@item.fecha_inicio</th>
+                            <th>@item.fecha_final</th>
+                            <th>@item.tipoHabitacion</th>
+                            <th>
+                                <form asp-action="verReservacion" asp-controller="Admin" method="post">
+                                    <input id="codigo" name="codigo" class="form-control" value="@item.codigo" hidden />
+                                    <input id="nombre" name="nombre" class="form-control" value="@item.nombre" hidden />
+                                    <input id="apellidos" name="apellidos" class="form-control" value="@item.apellidos" hidden />
+                                    <input id="email" name="email" class="form-control" value="@item.email" hidden />
+                                    <input id="tarjeta" name="tarjeta" class="form-control" value="@item.tarjeta" hidden />
+                                    <input id="id" name="id" class="form-control" value="@item.id" hidden />
+                                    <input id="fecha_inicio" name="fecha_inicio" class="form-control" value="@item.fecha_inicio" hidden />
+                                    <input id="fecha_final" name="fecha_final" class="form-control" value="@item.fecha_final" hidden />
+                                    <input id="tipoHabitacion" name="tipoHabitacion" class="form-control" value="@item.tipoHabitacion" hidden />
+                            <td><button type="submit" class="btn-success form-control">Ver</button></td>
+                            </form>
+                            </th>
+                            <th><form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
+                                <td><input id="id" name="id" class="form-control" value="@item.id" hidden /></td>
+                                <td><button type="submit" class="btn-danger form-control">Eliminar</button></td>
+                                </form>
+                            </th>
                         </tr>
-                    </thead>
-                    @foreach (var item in Model.HabitacionesStandard)
-                    {
-                        <tbody>
-                            <tr>
-                                <th scope="row">@item.id_habitacion </th>
-                                <td><input type="checkbox" value="@item.id_habitacion" id="@item.id_habitacion" onclick="cambiarEstado(this)">
-                                <script>activar(@item.id_habitacion,@item.estado);</script><p>Activa ?</p></td>
-                            </tr>
-                        </tbody>
-                    }
+                    </tbody>
+                }
 
-                </table>
-                <br /><br /><br /><br /><br /><br />
-                <div class="col-md-12">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-1">
-                            <h1>Junior <a asp-controller="Admin" asp-action="CambiarDescripcionJunior">cambiar descripcion</a></h1>
-                        </div>
-
-                    </div>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Número de habitación</th>
-                            <th scope="col">Estado</th>
-                        </tr>
-                    </thead>
-                    @foreach (var item in Model.HabitacionesJunior)
-                    {
-                        <tbody>
-                            <tr>
-                                <th scope="row">@item.id_habitacion </th>
-                                <td>
-                                    <input type="checkbox" value="@item.id_habitacion" id="@item.id_habitacion" onclick="cambiarEstado(this)">
-                                    <script>activar(@item.id_habitacion,@item.estado);</script><p>Activa ?</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    }
-                </table>
-            </div>
-            <br><br>
-
-            @if (Model.Mensaje != null)
-            {
-                <div class="alert alert-success" id="al1" role="alert" style="display: block; text-align:center">
-                    @Model.Mensaje
-                </div>
-                <br><br>
-            }
-
+            </table>
         </div>
 
 

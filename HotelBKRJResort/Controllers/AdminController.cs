@@ -42,6 +42,30 @@ namespace HotelBKRJResort.Controllers
 
             return View("Temporadas", temporadas);
         }
+        public IActionResult listadoReservaciones()
+        {
+            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+
+            List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
+
+            return View("Reservaciones",reservacions);
+        }
+        public IActionResult verReservacion()
+        {
+            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+
+            List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
+
+            return View("Reservaciones", reservacions);
+        }
+        public IActionResult eliminarReservacion()
+        {
+            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+
+            List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
+
+            return View("Reservaciones", reservacions);
+        }
 
 
         [HttpPost]

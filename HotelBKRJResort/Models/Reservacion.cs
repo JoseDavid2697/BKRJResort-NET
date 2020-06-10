@@ -7,6 +7,8 @@ namespace HotelBKRJResort.Models
 {
     public class Reservacion
     {
+        public int id { get; set; }
+        public String tipoHabitacion { get; set; }
         public int id_habitacion { get; set; }
         public DateTime fecha_inicio { get; set; }
         public DateTime fecha_final { get; set; }
