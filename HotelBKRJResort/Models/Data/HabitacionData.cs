@@ -44,7 +44,7 @@ namespace HotelBKRJResort.Models.Data
                             habitacion.estado = Convert.ToInt32(dataReader["estado"]);
                             habitacion.imagen = Convert.ToString(dataReader["imagen"]);
                             habitacion.fecha_final = Convert.ToString(dataReader["fechaReservaFinal"]);
-
+                            habitacion.estadoHabitacion = Convert.ToInt32(dataReader["estadoHabitacion"]);
 
                             habitaciones.Add(habitacion);
                         }

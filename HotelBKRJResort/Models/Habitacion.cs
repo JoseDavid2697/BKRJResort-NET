@@ -10,6 +10,8 @@ namespace HotelBKRJResort.Models
         public int id_habitacion { set; get; }
         public string nombre { set; get; }
         public int estado { set; get; }
+        
+       public int  estadoHabitacion { set; get; }
         public int monto{ set; get; }
         public int resultado { set; get; }
         public string imagen { get; set; }

@@ -39,5 +39,11 @@ namespace HotelBKRJResort.Models.Business
 
             return reservacionData.obtenerUsuario(identificacion);
         }
+
+        public void EliminarReservacion(int id)
+        {
+            ReservacionData reservacionData = new ReservacionData(this.Configuration);
+            reservacionData.EliminarReservacion(id);
+        }
     }
 }

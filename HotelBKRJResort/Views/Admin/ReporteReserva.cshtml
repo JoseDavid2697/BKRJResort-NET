@@ -1,0 +1,22 @@
+﻿@model Reservacion
+<div class="col-md-12">
+    <br> <br>
+    <h4>ID Reserva: @Model.codigo</h4>
+    <br>
+    <h4>Nombre: @Model.nombre</h4>
+    <br>
+    <h4>Apellidos: @Model.apellidos</h4>
+    <br>
+    <h4>Email: @Model.email</h4>
+    <br>
+    <h4>Tarjeta: @Model.tarjeta</h4>
+    <br>
+    <h4>Transacción: @Model.id</h4>
+    <br>
+    <h4>Fecha llegada: @Model.fecha_inicio.ToString("dd-MM-yyyy")</h4>
+    <br>
+    <h4>Fecha salida: @Model.fecha_final.ToString("dd-MM-yyyy")</h4>
+    <br>
+    <h4>Tipo: @Model.tipoHabitacion</h4>
+    <br>
+</div>

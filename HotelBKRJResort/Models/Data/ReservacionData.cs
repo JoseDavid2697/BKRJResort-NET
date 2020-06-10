@@ -145,6 +145,22 @@ namespace HotelBKRJResort.Models.Data
                 return usuario;
             }
         }
-        
+
+        public void EliminarReservacion(int id)
+        {
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_eliminar_reservacion]{id}";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+
     }
 }
