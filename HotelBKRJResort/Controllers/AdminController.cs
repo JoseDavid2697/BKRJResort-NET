@@ -8,11 +8,10 @@ using HotelBKRJResort.Models.Business;
 using HotelBKRJResort.Models.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using System.Web;
+using Rotativa.AspNetCore;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.IO;
+
 
 
 namespace HotelBKRJResort.Controllers
@@ -48,23 +47,32 @@ namespace HotelBKRJResort.Controllers
 
             List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
 
-            return View("Reservaciones",reservacions);
+            return View("Reservaciones", reservacions);
         }
-        public IActionResult verReservacion()
+
+        [HttpPost]
+        public IActionResult verReservacion(Reservacion reservacion)
+        {
+
+
+            return View("ReservacionIndividual", reservacion);
+        }
+        [HttpPost]
+        public IActionResult eliminarReservacion(int id)
         {
             ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
+
+            reservacionBusiness.EliminarReservacion(id);
 
             List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
 
             return View("Reservaciones", reservacions);
         }
-        public IActionResult eliminarReservacion()
+
+        [HttpPost]
+        public IActionResult ImprimirReserva(Reservacion r)
         {
-            ReservacionBusiness reservacionBusiness = new ReservacionBusiness(this.Configuration);
-
-            List<Reservacion> reservacions = reservacionBusiness.ObtenerReservaciones();
-
-            return View("Reservaciones", reservacions);
+            return new ViewAsPdf("ReporteReserva", r);
         }
 
 
@@ -220,12 +228,12 @@ namespace HotelBKRJResort.Controllers
         public IActionResult AdministrarHabitaciones()
         {
             TarifaBusiness tb = new TarifaBusiness(this.Configuration);
-            
+
             ObjetoContenedorPrincipal obj = new ObjetoContenedorPrincipal();
             obj.HabitacionesStandard = tb.ObtenerHabitaciones(1);
             obj.HabitacionesJunior = tb.ObtenerHabitaciones(2);
 
-            return View("AdministrarHabitaciones",obj);
+            return View("AdministrarHabitaciones", obj);
         }
 
         public IActionResult CambiarDescripcionStandard()
@@ -244,19 +252,20 @@ namespace HotelBKRJResort.Controllers
 
         public IActionResult ActualizarTarifa(int id, int precio, String descripcion, IFormFile img)
         {
-            
-            
+
+
             if (img != null)
             {
                 var fileName = "";
                 if (id == 2)
                 {
-                    fileName ="junior.jpg";
-                }else if (id == 1)
+                    fileName = "junior.jpg";
+                }
+                else if (id == 1)
                 {
                     fileName = "standard.jpg";
                 }
-                
+
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/tarifas");
                 var filePath = Path.Combine(uploads, fileName);
                 img.CopyTo(new FileStream(filePath, FileMode.Create));
@@ -264,14 +273,15 @@ namespace HotelBKRJResort.Controllers
             }
             TarifaBusiness tb = new TarifaBusiness(this.Configuration);
             String mensaje = "Actualizado con exito";
-              try
-              {
-                 
-                  tb.ActualizarTarifa(id, precio, descripcion);
-              }
-              catch {
-                  mensaje = "Error al actualizar";
-              }
+            try
+            {
+
+                tb.ActualizarTarifa(id, precio, descripcion);
+            }
+            catch
+            {
+                mensaje = "Error al actualizar";
+            }
 
             ObjetoContenedorPrincipal obj = new ObjetoContenedorPrincipal();
             obj.HabitacionesStandard = tb.ObtenerHabitaciones(1);
@@ -279,15 +289,6 @@ namespace HotelBKRJResort.Controllers
             obj.Mensaje = mensaje;
 
             return View("AdministrarHabitaciones", obj);
-        }
-
-        private string GetUniqueFileName(string fileName)
-        {
-            fileName = Path.GetFileName(fileName);
-            return Path.GetFileNameWithoutExtension(fileName)
-                      + "_"
-                      + Guid.NewGuid().ToString().Substring(0, 4)
-                      + Path.GetExtension(fileName);
         }
 
         //--------------ACTUALIZAR VISTAS--------------

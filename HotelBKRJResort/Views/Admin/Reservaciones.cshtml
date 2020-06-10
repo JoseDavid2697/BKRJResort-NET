@@ -67,7 +67,7 @@
     </section><!-- End Breadcrumbs -->
     <br><br>
     <section id="features" class="features">
-        <div class="container">
+        <div class="contasasainer">
             <br />
             <table class="table">
                 <thead>
@@ -78,8 +78,8 @@
                         <th scope="col">Email</th>
                         <th scope="col">Tarjeta</th>
                         <th scope="col">Transacción</th>
-                        <th scope="col">Fecha llegada</th>
-                        <th scope="col">Fecha salida</th>
+                        <th>Fecha llegada</th>
+                        <th>Fecha salida</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Ver</th>
                         <th scope="col">Eliminar</th>
@@ -95,8 +95,8 @@
                             <th>@item.email</th>
                             <th>@item.tarjeta</th>
                             <th>@item.id</th>
-                            <th>@item.fecha_inicio</th>
-                            <th>@item.fecha_final</th>
+                            <th>@item.fecha_inicio.ToString("dd-MM-yyyy")</th>
+                            <th>@item.fecha_final.ToString("dd-MM-yyyy")</th>
                             <th>@item.tipoHabitacion</th>
                             <th>
                                 <form asp-action="verReservacion" asp-controller="Admin" method="post">
@@ -109,12 +109,14 @@
                                     <input id="fecha_inicio" name="fecha_inicio" class="form-control" value="@item.fecha_inicio" hidden />
                                     <input id="fecha_final" name="fecha_final" class="form-control" value="@item.fecha_final" hidden />
                                     <input id="tipoHabitacion" name="tipoHabitacion" class="form-control" value="@item.tipoHabitacion" hidden />
-                            <td><button type="submit" class="btn-success form-control">Ver</button></td>
-                            </form>
+                                    <button type="submit" class="btn-success form-control">Ver</button>
+                                </form>
                             </th>
-                            <th><form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
-                                <td><input id="id" name="id" class="form-control" value="@item.id" hidden /></td>
-                                <td><button type="submit" class="btn-danger form-control">Eliminar</button></td>
+
+                            <th>
+                                <form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
+                                    <input id="id" name="id" class="form-control" value="@item.id" hidden />
+                                    <button type="submit" class="btn-danger form-control">Eliminar</button>
                                 </form>
                             </th>
                         </tr>
@@ -123,7 +125,7 @@
 
             </table>
         </div>
-
+        <br /><br /><br /><br /><br /><br />
 
     </section><!-- End Pricing Section -->
     <br><br>

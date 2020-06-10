@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model Reservacion
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Admin" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Admin" asp-action="verificarEstadoHabitaciones">Habitaciones</a></li>
+                <li><a asp-controller="Admin" asp-action="ConsultarHabitacion">Disponibilidad de habitacion</a></li>
+                <li><a asp-controller="Admin" asp-action="listadoReservaciones">Listado de reservaciones</a></li>
+                <li><a asp-controller="Admin" asp-action="AdministrarHabitaciones">Administrar habitaciones</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GESTIONAR
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Temporadas">Temporadas</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="OfertasAdmin">Ofertas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        VISTAS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="">Home</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="SobreNosotros">Sobre Nosotros</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="">Facilidades</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="">Como Llegar</a>
+
+                    </div>
+                </li>
+                <li><a asp-controller="Home" asp-action="Index">Cerrar Sesión</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Habitaciones</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>Habitaciones</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="features" class="features">
+        <div class="container">
+            <br />
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <form asp-controller="Admin" asp-action="ImprimirReserva" method="post">
+                        <br> <br>
+                        <h4>ID Reserva: @Model.codigo</h4>
+                        <br>
+                        <h4>Nombre: @Model.nombre</h4>
+                        <br>
+                        <h4>Apellidos: @Model.apellidos</h4>
+                        <br>
+                        <h4>Email: @Model.email</h4>
+                        <br>
+                        <h4>Tarjeta: @Model.tarjeta</h4>
+                        <br>
+                        <h4>Transacción: @Model.id</h4>
+                        <br>
+                        <h4>Fecha llegada: @Model.fecha_inicio.ToString("dd-MM-yyyy")</h4>
+                        <br>
+                        <h4>Fecha salida: @Model.fecha_final.ToString("dd-MM-yyyy")</h4>
+                        <br>
+                        <h4>Tipo: @Model.tipoHabitacion</h4>
+                        <br>
+
+                        <input id="codigo" name="codigo" class="form-control" value="@Model.codigo" hidden />
+                        <input id="nombre" name="nombre" class="form-control" value="@Model.nombre" hidden />
+                        <input id="apellidos" name="apellidos" class="form-control" value="@Model.apellidos" hidden />
+                        <input id="email" name="email" class="form-control" value="@Model.email" hidden />
+                        <input id="tarjeta" name="tarjeta" class="form-control" value="@Model.tarjeta" hidden />
+                        <input id="id" name="id" class="form-control" value="@Model.id" hidden />
+                        <input id="fecha_inicio" name="fecha_inicio" class="form-control" value="@Model.fecha_inicio.ToString("dd-MM-yyyy")" hidden />
+                        <input id="fecha_final" name="fecha_final" class="form-control" value="@Model.fecha_final.ToString("dd-MM-yyyy")" hidden />
+                        <input id="tipoHabitacion" name="tipoHabitacion" class="form-control" value="@Model.tipoHabitacion" hidden />
+
+                        <button class="btn btn-success" type="submit">Imprimir</button>
+                    </form>
+                    <br />
+                    <form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
+                        <input id="id" name="id" value="@Model.id" hidden />
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section><!-- End Pricing Section -->
+
+
+</main><!-- End #main -->
