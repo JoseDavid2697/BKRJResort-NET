@@ -67,6 +67,10 @@
     <section id="features" class="features">
         <div class="container">
             <br />
+            <center>
+                <h1>Fecha @DateTime.Now.ToString("dd-MM-yyyy")</h1>
+                <br/>
+            </center>
             <div class="row">
 
 
@@ -112,6 +116,12 @@
                     </div>
                 }
             </div>
+            <form asp-controller="Admin" asp-action="ImprimirHabitaciones" method="post">
+                <br />
+                <center>
+                    <button class="btn btn-success" type="submit">Imprimir</button>
+                </center>
+            </form>
 
         </div>
 

@@ -1,0 +1,45 @@
+﻿@model List<Habitacion>
+    <div class="row">
+        <center>
+            <h1>Fecha @DateTime.Now.ToString("dd-MM-yyyy")</h1>
+
+            <table class="table">
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="col-md-8">
+                                    <br> <br>
+                                    <h4>Número de habitación: @item.id_habitacion</h4>
+                                    <br>
+                                    <h4>Tipo de habitación: @item.nombre</h4>
+                                    <br>
+
+                                    @if (item.estadoHabitacion == 0)
+                                    {
+                                        <h4>Estado: Inactiva</h4>
+                                    }
+                                    else
+                                    {
+                                        @if (item.estado == 0)
+                                        {
+                                            <h4>Estado: Ocupada</h4>
+                                            <h5>Disponible a partir de @item.fecha_final</h5>
+                                        }
+                                        else
+                                        {
+                                            <h4>Estado: Disponible</h4>
+                                        }}
+                                    <br>
+                                    <br>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                <tbody>
+            </table>
+        </center>
+
+    </div>
