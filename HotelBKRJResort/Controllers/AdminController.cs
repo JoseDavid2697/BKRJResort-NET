@@ -190,13 +190,23 @@ namespace HotelBKRJResort.Controllers
 
 
         public IActionResult verificarEstadoHabitaciones()
-        {
+        {   
             HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
 
             List<Habitacion> habitaciones = habitacionBusiness.obtenerEstadoHabitaciones();
 
 
             return View("Habitaciones", habitaciones);
+        }
+
+        public IActionResult ImprimirHabitaciones()
+        {
+            HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
+
+            List<Habitacion> habitaciones = habitacionBusiness.obtenerEstadoHabitaciones();
+            
+            return new ViewAsPdf("ReporteHabitaciones", habitaciones);
+
         }
 
         public IActionResult ConsultarHabitacion()
