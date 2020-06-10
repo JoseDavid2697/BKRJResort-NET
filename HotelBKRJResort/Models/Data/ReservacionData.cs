@@ -75,6 +75,45 @@ namespace HotelBKRJResort.Models.Data
                 }
             }
         }
+        
+         public List<Reservacion> ObtenerReservaciones()
+        {
+
+            List<Reservacion> reservaciones = new List<Reservacion>();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtener_reservaciones]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            Reservacion reservacion = new Reservacion();
+                            reservacion.codigo = Convert.ToString(dataReader["codigo"]);
+                            reservacion.nombre = Convert.ToString(dataReader["nombreCliente"]);
+                            reservacion.apellidos = Convert.ToString(dataReader["apellidosCliente"]);
+                            reservacion.email = Convert.ToString(dataReader["coreoCliente"]);
+                            reservacion.tarjeta = Convert.ToString(dataReader["cuentaCliente"]);
+                            reservacion.id = Convert.ToInt32(dataReader["id"]);
+                            reservacion.fecha_inicio = Convert.ToDateTime(dataReader["fechaInicio"]);
+                            reservacion.fecha_final = Convert.ToDateTime(dataReader["fechaFinal"]);
+                            reservacion.tipoHabitacion = Convert.ToString(dataReader["nombre"]);
+                            
+                            reservaciones.Add(reservacion);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return reservaciones;
+        }
+
         public Usuario obtenerUsuario(String identificacion)
         {
 

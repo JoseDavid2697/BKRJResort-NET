@@ -28,6 +28,11 @@ namespace HotelBKRJResort.Models.Business
             ReservacionData rd = new ReservacionData(this.Configuration);
             rd.InsertarReservacion(reservacion);
         }
+        public List<Reservacion> ObtenerReservaciones()
+        {
+            ReservacionData rd = new ReservacionData(this.Configuration);
+            return rd.ObtenerReservaciones();
+        }
         public Usuario obtenerUsuario(String identificacion)
         {
             ReservacionData reservacionData = new ReservacionData(this.Configuration);
