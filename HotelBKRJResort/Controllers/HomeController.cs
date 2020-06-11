@@ -48,8 +48,10 @@ namespace HotelBKRJResort.Controllers
 
         public IActionResult ComoLlegar()
         {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
 
-            return View();
+            return View("ComoLlegar", vb.obtenerComoLlegar());
+            
         }
 
         public IActionResult Tarifas()
