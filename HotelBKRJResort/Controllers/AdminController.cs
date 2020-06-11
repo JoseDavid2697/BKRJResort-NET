@@ -342,5 +342,19 @@ namespace HotelBKRJResort.Controllers
             return View("FacilidadesEditable", vb.actualizarFacilidades(vista));
         }
 
+        public IActionResult ComoLlegar()
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("ComoLlegarEditable", vb.obtenerComoLlegar());
+        }
+
+        public IActionResult ActualizarComoLlegar(Vista vista)
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("ComoLlegarEditable", vb.actualizarComoLlegar(vista));
+        }
+
     }
 }

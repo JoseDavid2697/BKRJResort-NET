@@ -45,6 +45,21 @@ namespace HotelBKRJResort.Models.Business
 
             return vistaData.actualizarFacilidades(vista);
         }
+      
+      //COMO LLEGAR
+        public Vista obtenerComoLlegar()
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.obtenerComoLlegar();
+        }
+
+        public Vista actualizarComoLlegar(Vista vista)
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.actualizarComoLlegar(vista);
+        } 
 
     }
 }

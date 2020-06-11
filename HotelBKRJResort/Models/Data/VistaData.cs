@@ -95,8 +95,78 @@ namespace HotelBKRJResort.Models.Data
 
             return vistaActualizada;
         }
+      
+     
+        //-------------COMO LLEGAR-------------
+        public Vista obtenerComoLlegar()
+        {
+            Vista vista = new Vista();
 
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
+                string sql = $"EXEC [dbo].[sp_obtenerComoLlegar]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vista.titulo = Convert.ToString(dataReader["titulo"]);
+                            vista.descripcion = Convert.ToString(dataReader["descripcion"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vista;
+        }
+
+        public Vista actualizarComoLlegar(Vista vista)
+        {
+            Vista vistaActualizada = new Vista();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string sql = $"EXEC [dbo].[sp_actualizar_comollegar]'{vista.titulo}','{vista.descripcion}'";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                connection.Open();
+
+                sql = $"EXEC [dbo].[sp_obtenerComoLlegar]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vistaActualizada.titulo = Convert.ToString(dataReader["titulo"]);
+                            vistaActualizada.descripcion = Convert.ToString(dataReader["descripcion"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vistaActualizada;
+        }
+      
         //-------------FACILIDADES-------------
 
         public Vista obtenerFacilidades()
