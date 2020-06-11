@@ -304,6 +304,14 @@ namespace HotelBKRJResort.Controllers
             return View("AdministrarHabitaciones", obj);
         }
 
+        [HttpPost]
+        public void actualizarEstado(int idHabitacion, int estado)
+        {
+            HabitacionBusiness hb = new HabitacionBusiness(this.Configuration);
+            hb.actualizarEstado(idHabitacion, estado);
+
+        }
+
         //--------------ACTUALIZAR VISTAS--------------
 
         public IActionResult SobreNosotros()
@@ -320,12 +328,18 @@ namespace HotelBKRJResort.Controllers
             return View("SobreNosotrosEditable", vb.actualizarSobreNosotros(vista));
         }
 
-        [HttpPost]
-        public void actualizarEstado(int idHabitacion, int estado)
+        public IActionResult Facilidades()
         {
-            HabitacionBusiness hb = new HabitacionBusiness(this.Configuration);
-            hb.actualizarEstado(idHabitacion, estado);
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
 
+            return View("FacilidadesEditable", vb.obtenerFacilidades());
+        }
+
+        public IActionResult ActualizarFacilidades(Vista vista)
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("FacilidadesEditable", vb.actualizarFacilidades(vista));
         }
 
         public IActionResult ComoLlegar()

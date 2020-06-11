@@ -18,6 +18,7 @@ namespace HotelBKRJResort.Models.Data
             Configuration = configuration;
         }
 
+        //-------------SOBRE NOSOTROS-------------
         public Vista obtenerSobreNosotros()
         {
             Vista vista = new Vista();
@@ -94,7 +95,9 @@ namespace HotelBKRJResort.Models.Data
 
             return vistaActualizada;
         }
-
+      
+     
+        //-------------COMO LLEGAR-------------
         public Vista obtenerComoLlegar()
         {
             Vista vista = new Vista();
@@ -163,7 +166,84 @@ namespace HotelBKRJResort.Models.Data
 
             return vistaActualizada;
         }
+      
+        //-------------FACILIDADES-------------
 
+        public Vista obtenerFacilidades()
+        {
+            Vista vista = new Vista();
 
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtenerFacilidades]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vista.equipo = Convert.ToString(dataReader["equipo"]);
+                            vista.precios = Convert.ToString(dataReader["precios"]);
+                            vista.internet = Convert.ToString(dataReader["internet"]);
+                            vista.mirador = Convert.ToString(dataReader["mirador"]);
+                            vista.seguridad = Convert.ToString(dataReader["seguridad"]);
+                            vista.calendarios = Convert.ToString(dataReader["calendarios"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vista;
+        }
+
+        public Vista actualizarFacilidades(Vista vista)
+        {
+            Vista vistaActualizada = new Vista();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string sql = $"EXEC [dbo].[sp_actualizar_facilidades]'{vista.equipo}','{vista.precios}','{vista.internet}','{vista.mirador}','{vista.seguridad}','{vista.calendarios}'";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                connection.Open();
+
+                sql = $"EXEC [dbo].[sp_obtenerFacilidades]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vistaActualizada.equipo = Convert.ToString(dataReader["equipo"]);
+                            vistaActualizada.precios = Convert.ToString(dataReader["precios"]);
+                            vistaActualizada.internet = Convert.ToString(dataReader["internet"]);
+                            vistaActualizada.mirador = Convert.ToString(dataReader["mirador"]);
+                            vistaActualizada.seguridad = Convert.ToString(dataReader["seguridad"]);
+                            vistaActualizada.calendarios = Convert.ToString(dataReader["calendarios"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vistaActualizada;
+        }
     }
 }
