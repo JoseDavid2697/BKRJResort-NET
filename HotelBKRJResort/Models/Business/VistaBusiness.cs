@@ -16,6 +16,7 @@ namespace HotelBKRJResort.Models.Business
             Configuration = configuration;
         }
 
+        //SOBRE NOSOTROS
         public Vista obtenerSobreNosotros()
         {
             VistaData vistaData = new VistaData(this.Configuration);
@@ -29,7 +30,22 @@ namespace HotelBKRJResort.Models.Business
 
             return vistaData.actualizarSobreNosotros(vista);
         }
-        
+
+        //FACILIDADES
+        public Vista obtenerFacilidades()
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.obtenerFacilidades();
+        }
+
+        public Vista actualizarFacilidades(Vista vista)
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.actualizarFacilidades(vista);
+        }
+
     }
 }
 

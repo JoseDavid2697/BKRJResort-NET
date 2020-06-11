@@ -15,7 +15,13 @@ namespace HotelBKRJResort.Models
         public string experiencias { get; set; }
         public string seguridad { get; set; }
 
-        
+
+        //Facilidades
+        public string equipo { get; set; }
+        public string precios { get; set; }
+        public string internet { get; set; }
+        public string mirador { get; set; }
+        public string calendarios { get; set; }
 
     }
 }
