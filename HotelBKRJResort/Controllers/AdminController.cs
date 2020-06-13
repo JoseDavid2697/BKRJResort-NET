@@ -281,7 +281,10 @@ namespace HotelBKRJResort.Controllers
 
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/tarifas");
                 var filePath = Path.Combine(uploads, fileName);
-                img.CopyTo(new FileStream(filePath, FileMode.Create));
+                FileStream f = new FileStream(filePath, FileMode.Create);
+                img.CopyTo(f);
+                f.Close();
+                
 
             }
             TarifaBusiness tb = new TarifaBusiness(this.Configuration);
@@ -372,7 +375,9 @@ namespace HotelBKRJResort.Controllers
                 var fileName = "slide-1.jpg";
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
                 var filePath = Path.Combine(uploads, fileName);
-                img1.CopyTo(new FileStream(filePath, FileMode.Create));
+                FileStream f =  new FileStream(filePath, FileMode.Create);
+                img1.CopyTo(f);
+                f.Close();
             }
 
             if (img2 != null)
@@ -380,7 +385,9 @@ namespace HotelBKRJResort.Controllers
                 var fileName = "slide-2.jpg";
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
                 var filePath = Path.Combine(uploads, fileName);
-                img2.CopyTo(new FileStream(filePath, FileMode.Create));
+                FileStream f = new FileStream(filePath, FileMode.Create);
+                img2.CopyTo(f);
+                f.Close();
 
             }
 
@@ -390,7 +397,9 @@ namespace HotelBKRJResort.Controllers
 
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
                 var filePath = Path.Combine(uploads, fileName);
-                img3.CopyTo(new FileStream(filePath, FileMode.Create));
+                FileStream f = new FileStream(filePath, FileMode.Create);
+                img3.CopyTo(f);
+                f.Close();
 
 
             }
