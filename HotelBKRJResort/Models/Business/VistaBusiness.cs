@@ -59,7 +59,22 @@ namespace HotelBKRJResort.Models.Business
             VistaData vistaData = new VistaData(this.Configuration);
 
             return vistaData.actualizarComoLlegar(vista);
-        } 
+        }
+
+        //HOME
+        public Vista obtenerHome()
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.obtenerHome();
+        }
+
+        public Vista actualizarHome(Vista vista)
+        {
+            VistaData vistaData = new VistaData(this.Configuration);
+
+            return vistaData.actualizarHome(vista);
+        }
 
     }
 }

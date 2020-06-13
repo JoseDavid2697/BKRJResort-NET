@@ -356,5 +356,48 @@ namespace HotelBKRJResort.Controllers
             return View("ComoLlegarEditable", vb.actualizarComoLlegar(vista));
         }
 
+        public IActionResult Home()
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            return View("HomeEditable", vb.obtenerHome());
+        }
+
+        public IActionResult ActualizarHome(Vista vista, IFormFile img1, IFormFile img2, IFormFile img3)
+        {
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            if (img1 != null)
+            {
+                var fileName = "slide-1.jpg";
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
+                var filePath = Path.Combine(uploads, fileName);
+                img1.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+
+            if (img2 != null)
+            {
+                var fileName = "slide-2.jpg";
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
+                var filePath = Path.Combine(uploads, fileName);
+                img2.CopyTo(new FileStream(filePath, FileMode.Create));
+
+            }
+
+            if (img3 != null)
+            {
+                var fileName = "slide-3.jpg";
+
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
+                var filePath = Path.Combine(uploads, fileName);
+                img3.CopyTo(new FileStream(filePath, FileMode.Create));
+
+
+            }
+
+
+            return View("HomeEditable", vb.actualizarHome(vista));
+        }
+
     }
 }
