@@ -42,7 +42,7 @@
                 <div class="container">
                     <div class="carousel-content animated fadeInUp">
                         <h2>Bienvenido a <span>BKRJ Resort</span></h2>
-                        <p>Nos identificamos por ser el mejor Beach Resort de Costa Rica, con más de 100 reconocimientos internacionales. Visítenos y disfrute de las hermosas vistas al Oceano Pacífico.</p>
+                        <p>@Model.vista.texto1</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="container">
                     <div class="carousel-content animated fadeInUp">
                         <h2>Su comodidad es nuestro objetivo</h2>
-                        <p>Nos preocupamos por el bienestar de los clientes, es por eso que contamos con todo el equipo necesario para su buena estadía, tanto por el día como por las noches, contamos con un ambiente preparado a la orilla del mar para que disfrute del atardecer.</p>
+                        <p>@Model.vista.texto2</p>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="container">
                     <div class="carousel-content animated fadeInUp">
                         <h2>Una experiencia nunca antes vivida</h2>
-                        <p>La cercanía con el mar nos permite deleitar a nuestros clientes con hermosas vistas, lo que conlleva una experiencia inimaginable, podrá relajarse frente al mar al tomar el sol, mientras disfruta del excelente servicio que nos caracteriza.</p>
+                        <p>@Model.vista.texto3</p>
                     </div>
                 </div>
             </div>
@@ -92,8 +92,8 @@
 
             <div class="row">
                 <div class="col-lg-9 text-center text-lg-left">
-                    <h3>Hemos destacado a nivel mundial por nuestro servicio, es por eso que somos <span>el mejor Beach Resort de Costa Rica</span></h3>
-                    <p>Nuestro gran servicio al cliente, instalaciones y profesionalismo, nos ha permitido estar entre los mejores <span>50 hoteles</span> alrededor del mundo. </p>
+                    <h3>@Model.vista.descripcion1</h3>
+                    <p>@Model.vista.descripcion2</p>
                 </div>
                 <div class="col-lg-3 cta-btn-container text-center">
                     <a class="cta-btn align-middle" asp-controller="Home" asp-action="ReservasEnLinea">Reservar Ahora!</a>
@@ -117,7 +117,7 @@
                         <div class="box" data-aos="fade-right">
                             <h3>@item.Nombre</h3>
                             @item.Descripcion
-                            <img src=" @item.Imagen" alt="oferta" class="img-fluid">
+                            <img src=" @item.Imagen" alt="oferta" width="300" height="300">
                             <div class="btn-wrap">
                                 <a href="@item.Link_Destino" target="_blank" class="btn-buy">Obtener</a>
                             </div>

@@ -31,6 +31,10 @@ namespace HotelBKRJResort.Controllers
 
             contenedor.Ofertas = ofertaBusiness.ObtenerOfertas();
 
+            VistaBusiness vb = new VistaBusiness(this.Configuration);
+
+            contenedor.vista = vb.obtenerHome();
+
             return View("Index", contenedor);
         }
 

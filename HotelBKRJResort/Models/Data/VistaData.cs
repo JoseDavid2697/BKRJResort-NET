@@ -245,5 +245,86 @@ namespace HotelBKRJResort.Models.Data
 
             return vistaActualizada;
         }
+
+        public Vista obtenerHome()
+        {
+            Vista vista = new Vista();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"EXEC [dbo].[sp_obtenerHome]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vista.texto1 = Convert.ToString(dataReader["texto1"]);
+                            vista.texto2 = Convert.ToString(dataReader["texto2"]);
+                            vista.texto3 = Convert.ToString(dataReader["texto3"]);
+                            vista.imagen1 = Convert.ToString(dataReader["imagen1"]);
+                            vista.imagen2 = Convert.ToString(dataReader["imagen2"]);
+                            vista.imagen3 = Convert.ToString(dataReader["imagen3"]);
+                            vista.descripcion1 = Convert.ToString(dataReader["descripcion1"]);
+                            vista.descripcion2 = Convert.ToString(dataReader["descripcion2"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vista;
+        }
+
+        public Vista actualizarHome(Vista vista)
+        {
+            Vista vistaActualiza = new Vista();
+
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string sql = $"EXEC [dbo].[sp_actualizar_Home]'{vista.texto1}','{vista.texto2}','{vista.texto3}','{vista.descripcion1}','{vista.descripcion2}'";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                connection.Open();
+
+                sql = $"EXEC [dbo].[sp_obtenerHome]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+
+                            vistaActualiza.texto1 = Convert.ToString(dataReader["texto1"]);
+                            vistaActualiza.texto2 = Convert.ToString(dataReader["texto2"]);
+                            vistaActualiza.texto3 = Convert.ToString(dataReader["texto3"]);
+                            vistaActualiza.imagen1 = Convert.ToString(dataReader["imagen1"]);
+                            vistaActualiza.imagen2 = Convert.ToString(dataReader["imagen2"]);
+                            vistaActualiza.imagen3 = Convert.ToString(dataReader["imagen3"]);
+                            vistaActualiza.descripcion1 = Convert.ToString(dataReader["descripcion1"]);
+                            vistaActualiza.descripcion2 = Convert.ToString(dataReader["descripcion2"]);
+
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+
+            return vistaActualiza;
+        }
     }
 }

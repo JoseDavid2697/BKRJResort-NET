@@ -19,5 +19,7 @@ namespace HotelBKRJResort.Models
         public MensajeReserva mensaje {get; set;}
         
         public String Mensaje { get; set; }
+
+        public Vista vista { get; set; }
     }
 }
