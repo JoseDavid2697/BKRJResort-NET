@@ -11,8 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Rotativa.AspNetCore;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-
-
+using System.Net.Mail;
+using System.Net;
 
 namespace HotelBKRJResort.Controllers
 {
@@ -87,14 +87,14 @@ namespace HotelBKRJResort.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarOferta(String nombre, String descripcion, String linkDestino,IFormFile img)
+        public IActionResult RegistrarOferta(String nombre, String descripcion, String linkDestino, IFormFile img)
         {
             OfertaBusiness ofertaBusiness = new OfertaBusiness(this.Configuration);
             var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/promociones");
             var filePath = Path.Combine(uploads, img.FileName);
             img.CopyTo(new FileStream(filePath, FileMode.Create));
 
-            List<Oferta> ofertas = ofertaBusiness.RegistrarOferta(nombre, descripcion, linkDestino,img.FileName);
+            List<Oferta> ofertas = ofertaBusiness.RegistrarOferta(nombre, descripcion, linkDestino, img.FileName);
 
             return View("Ofertas", ofertas);
         }
@@ -190,7 +190,7 @@ namespace HotelBKRJResort.Controllers
 
 
         public IActionResult verificarEstadoHabitaciones()
-        {   
+        {
             HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
 
             List<Habitacion> habitaciones = habitacionBusiness.obtenerEstadoHabitaciones();
@@ -204,7 +204,7 @@ namespace HotelBKRJResort.Controllers
             HabitacionBusiness habitacionBusiness = new HabitacionBusiness(this.Configuration);
 
             List<Habitacion> habitaciones = habitacionBusiness.obtenerEstadoHabitaciones();
-            
+
             return new ViewAsPdf("ReporteHabitaciones", habitaciones);
 
         }
@@ -284,7 +284,7 @@ namespace HotelBKRJResort.Controllers
                 FileStream f = new FileStream(filePath, FileMode.Create);
                 img.CopyTo(f);
                 f.Close();
-                
+
 
             }
             TarifaBusiness tb = new TarifaBusiness(this.Configuration);
@@ -375,7 +375,7 @@ namespace HotelBKRJResort.Controllers
                 var fileName = "slide-1.jpg";
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "assets/img/slide");
                 var filePath = Path.Combine(uploads, fileName);
-                FileStream f =  new FileStream(filePath, FileMode.Create);
+                FileStream f = new FileStream(filePath, FileMode.Create);
                 img1.CopyTo(f);
                 f.Close();
             }
@@ -407,6 +407,77 @@ namespace HotelBKRJResort.Controllers
 
             return View("HomeEditable", vb.actualizarHome(vista));
         }
+
+        public IActionResult MostrarOfertasSolicitadas()
+        {
+            OfertaBusiness ob = new OfertaBusiness(this.Configuration);
+
+
+            return View("SolicitudesOfertas", ob.ObtenerOfertasSolicitadas());
+        }
+
+        public IActionResult ResponderSolicitudOferta(int id, int opcion)
+        {
+            OfertaBusiness ob = new OfertaBusiness(this.Configuration);
+            string mensaje = "";
+            string correo = ob.ObtenerCorreoProveedor(id);
+            if (opcion == 0)
+            {
+                ob.EliminarOferta(id);
+                mensaje = "Su solicitud de publicar la oferta número " + id + " fue RECHAZADA y eliminada por los administradores de BKRJ Resort";
+                enviarCorreo(correo, mensaje);
+            }
+            else if (opcion == 1)
+            {
+                ob.AceptarOferta(id);
+                mensaje = "Su solicitud de publicar la oferta número " + id + " fue ACEPTADA por los administradores de BKRJ Resort";
+                enviarCorreo(correo, mensaje);
+            }
+
+
+            return View("SolicitudesOfertas", ob.ObtenerOfertasSolicitadas());
+        }
+
+        public void enviarCorreo(string correo_cliente, string bodyParam)
+        {
+            try
+            {
+                string usuarioCorreo = Configuration["ConnectionStrings:UsuarioCorreo"];
+                string contrasennaCorreo = Configuration["ConnectionStrings:ContrasennaCorreo"];
+
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress(usuarioCorreo, "BKRJ Resort");
+                    var receiverEmail = new MailAddress(correo_cliente, "Proveedor");
+                    var password = contrasennaCorreo;
+
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = "Solicitud de publicación de oferta",
+                        Body = bodyParam
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                System.Diagnostics.Debug.WriteLine(e);
+            }
+
+        }
+
 
     }
 }
