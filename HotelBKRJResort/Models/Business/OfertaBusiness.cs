@@ -16,7 +16,7 @@ namespace HotelBKRJResort.Models.Business
         {
             Configuration = configuration;
         }
-        
+
         public List<Oferta> ObtenerOfertasAdmin()
         {
             OfertaData ofertaData = new OfertaData(this.Configuration);
@@ -31,11 +31,11 @@ namespace HotelBKRJResort.Models.Business
             return ofertaData.ObtenerOfertas();
         }
 
-        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino,string img)
+        public List<Oferta> RegistrarOferta(String nombre, String descripcion, String linkDestino, string img)
         {
             OfertaData ofertaData = new OfertaData(this.Configuration);
 
-            return ofertaData.RegistrarOferta(nombre, descripcion, linkDestino,img);
+            return ofertaData.RegistrarOferta(nombre, descripcion, linkDestino, img);
         }
 
         public List<Oferta> ActualizarOferta(int id, String nombre, String descripcion, String linkDestino)
@@ -50,6 +50,26 @@ namespace HotelBKRJResort.Models.Business
             OfertaData ofertaData = new OfertaData(this.Configuration);
 
             return ofertaData.EliminarOferta(id);
+        }
+
+        public List<Oferta> ObtenerOfertasSolicitadas()
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.ObtenerOfertasSolicitadas();
+        }
+        public void AceptarOferta(int id)
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            ofertaData.AceptarOferta(id);
+        }
+
+        public string ObtenerCorreoProveedor(int id)
+        {
+            OfertaData ofertaData = new OfertaData(this.Configuration);
+
+            return ofertaData.ObtenerCorreoProveedor(id);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace HotelBKRJResort.Models
 
         public string Imagen { get; set; }
 
+        public string NombreProveedor { get; set; }
+
         public string Link_Destino { get; set; }
 
     }

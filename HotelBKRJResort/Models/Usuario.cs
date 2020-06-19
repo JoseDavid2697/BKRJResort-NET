@@ -15,5 +15,6 @@ namespace HotelBKRJResort.Models
         public string apellidos { get; set; }
         public string email { get; set; }
         public string tarjeta { get; set; }
+        public string correo { get; set; }
     }
 }

@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "Ofertas";
+}
+<script src="~/assets/js/script.js"></script>
+@model List<Oferta>
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a asp-controller="Admin" asp-action="Index">BKRJ Resort</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Admin" asp-action="listadoReservaciones">Listado de reservaciones</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GESTIONAR HABITACIONES
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="verificarEstadoHabitaciones">Habitaciones</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="ConsultarHabitacion">Disponibilidad de habitacion</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="AdministrarHabitaciones">Administrar habitaciones</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GESTIONAR
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Temporadas">Temporadas</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="OfertasAdmin">Ofertas</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="MostrarOfertasSolicitadas">Aceptar / Rechazar Ofertas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        VISTAS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="text-align: center">
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Home">Home</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="SobreNosotros">Sobre Nosotros</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Facilidades">Facilidades</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="ComoLlegar">Como Llegar</a>
+
+                    </div>
+                </li>
+                <li><a asp-controller="Home" asp-action="Index">Cerrar Sesión</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Listado de ofertas solicitadas</h2>
+                <ol>
+                    <li><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                    <li>Listado de ofertas solicitadas</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <br><br>
+    <section id="features" class="features">
+        <div class="contasasainer">
+            <br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID Reserva</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Solicitante</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <th>@item.Id</th>
+                            <th>@item.Nombre</th>
+                            <th>@item.Descripcion</th>
+                            <th>@item.Link_Destino</th>
+                            <th>@item.NombreProveedor</th>
+
+                            <th>
+                                <form asp-action="ResponderSolicitudOferta" asp-controller="Admin" method="post">
+                                    <input id="id" name="id" class="form-control" value="@item.Id" hidden />
+                                    <input id="opcion" name="opcion" class="form-control" value="1" hidden />
+                                    <button type="submit" class="btn-success form-control">Aceptar</button>
+                                </form>
+                            </th>
+
+                            <th>
+                                <form asp-action="ResponderSolicitudOferta" asp-controller="Admin" method="post">
+                                    <input id="id" name="id" class="form-control" value="@item.Id" hidden />
+                                    <input id="opcion" name="opcion" class="form-control" value="0" hidden />
+                                    <button type="submit" class="btn-danger form-control">Rechazar</button>
+                                </form>
+                            </th>
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    </section><!-- End Pricing Section -->
+    <br><br>
+
+</main><!-- End #main -->
