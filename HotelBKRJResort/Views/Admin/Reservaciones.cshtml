@@ -122,11 +122,13 @@
                             </th>
 
                             <th>
-                                <form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
+                                <form asp-action="eliminarReservacion" asp-controller="Admin" name="@item.id" id="@item.id" method="post">
                                     <input id="id" name="id" class="form-control" value="@item.id" hidden />
-                                    <button type="submit" class="btn-danger form-control">Eliminar</button>
+                                    <input type="button" class="btn-danger form-control" name="txt_test" id="txt_test" onclick="eliminarReservacion(@item.id);" value="Eliminar"/>
                                 </form>
+
                             </th>
+
                         </tr>
                     </tbody>
                 }

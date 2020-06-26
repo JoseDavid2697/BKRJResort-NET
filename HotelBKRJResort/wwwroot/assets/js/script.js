@@ -24,6 +24,31 @@
 
 }
 
+function eliminarOferta(id) {
+    var mensaje;
+    var opcion = confirm("Estás seguro que deseas eliminar esta oferta?\nNo podrás deshacer la acción correspondiente");
+    if (opcion == true) {
+        mensaje = "Has clickado OK";
+        $('#'+id).submit();
+        alert("Eliminado correctamente");
+    }
+}
+function eliminarReservacion(id) {
+    var mensaje;
+    var opcion = confirm("Estás seguro que deseas eliminar esta reservación?\nNo podrás deshacer la acción correspondiente");
+    if (opcion == true) {
+        $('#' + id).submit();
+        alert("Eliminado correctamente");
+    }
+}
+function eliminarTemporada(id) {
+    var mensaje;
+    var opcion = confirm("Estás seguro que deseas eliminar esta temporada?\nNo podrás deshacer la acción correspondiente");
+    if (opcion == true) {
+        $('#'+id).submit();
+        alert("Eliminado correctamente");
+    }
+}
 function cambiarEstado(checkboxElem) {
 
     var idHabitacion = checkboxElem.id;

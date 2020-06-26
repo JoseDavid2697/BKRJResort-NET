@@ -3,6 +3,9 @@
 }
 @model List<Oferta>
 <!-- ======= Header ======= -->
+<script type="text/javascript" src="~/js/jquery-3.3.1.js"></script>
+<script src="~/assets/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.3.5/sweetalert2.all.min.js"></script>
 <header id="header">
     <div class="container d-flex">
 
@@ -164,18 +167,17 @@
             }
 
         .booking-form input[type="file"].form-control {
-
             padding-top: 16px;
         }
 
-            .booking-form input[type="date"].form-control:invalid {
-                color: rgba(255, 255, 255, 0.5);
-            }
+        .booking-form input[type="date"].form-control:invalid {
+            color: rgba(255, 255, 255, 0.5);
+        }
 
-            .booking-form input[type="date"].form-control + .form-label {
-                opacity: 1;
-                top: 10px;
-            }
+        .booking-form input[type="date"].form-control + .form-label {
+            opacity: 1;
+            top: 10px;
+        }
 
         .booking-form input[type="number"].form-control + .form-label {
             opacity: 1;
@@ -339,19 +341,19 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <form asp-action="ActualizarOfertas" asp-controller="Admin" method="post" enctype="multipart/form-data">
-                                    <input id="id" name="id" class="form-control" value="@item.Id" hidden />
-                                    <td><input id="nombre" name="nombre" class="form-control" value="@item.Nombre" /> </td>
-                                    <td><input id="descripcion" name="descripcion" class="form-control" value="@item.Descripcion" /> </td>
-                                    <td><input id="linkDestino" name="linkDestino" class="form-control" value="@item.Link_Destino" /></td>
-                                    <td><button type="submit" class="btn-warning form-control">Actualizar</button></td>
-                                </form>
-                                <form asp-action="EliminarOferta" asp-controller="Admin" method="post">
-                                    <td><input id="id" name="id" class="form-control" value="@item.Id" hidden /></td>
-                                    <td><button type="submit" class="btn-danger form-control">Eliminar</button></td>
-                                </form>
-                            </tr>
+                        <tr id="fila'@item.Id'" name="fila'@item.Id'">
+                            <form asp-action="ActualizarOfertas" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                                <input id="id" name="id" class="form-control" value="@item.Id" hidden />
+                                <td><input id="nombre" name="nombre" class="form-control" value="@item.Nombre" /> </td>
+                                <td><input id="descripcion" name="descripcion" class="form-control" value="@item.Descripcion" /> </td>
+                                <td><input id="linkDestino" name="linkDestino" class="form-control" value="@item.Link_Destino" /></td>
+                                <td><button type="submit" class="btn-warning form-control">Actualizar</button></td>
+                            </form>
+                            <form asp-action="EliminarOferta" asp-controller="Admin" name="@item.Id" id="@item.Id" method="post">
+                                <td><input id="id" name="id" class="form-control" value="@item.Id" hidden /></td>
+                                <td><input type="button" class="btn-danger form-control" name="txt_test" id="txt_test" onclick="eliminarOferta(@item.Id);" value="Eliminar" /></td>
+                            </form>
+                        </tr>
                         }
                     </tbody>
                 </table>
