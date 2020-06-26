@@ -69,7 +69,7 @@
                 <br />
                 <input class="form-control" type="file" id="img1" name="img1">
             </div>
-            <div class="col col-6"><h3>Bienvenido a BKRJ Resort</h3><br /><textarea cols="50" rows="6" id="texto1" name="texto1">@Model.texto1</textarea></div>
+            <div class="col col-6"><h3>Bienvenido a BKRJ Resort</h3><br /><textarea cols="50" rows="6" id="texto1" name="texto1" required >@Model.texto1</textarea></div>
         </div>
         <br />
         <div class="row">
@@ -78,7 +78,7 @@
                 <br />
                 <input class="form-control" type="file" id="img2" name="img2">
             </div>
-            <div class="col col-6"><h3>Su comodidad es nuestro objetivo</h3><br /><textarea cols="50" rows="6" id="texto2" name="texto2">@Model.texto2</textarea></div>
+            <div class="col col-6"><h3>Su comodidad es nuestro objetivo</h3><br /><textarea cols="50" rows="6" id="texto2" name="texto2" required>@Model.texto2</textarea></div>
         </div>
         <br />
         <div class="row">
@@ -87,7 +87,7 @@
                 <br />
                 <input class="form-control" type="file" id="img3" name="img3">
             </div>
-            <div class="col col-6"><h3>Una experiencia nunca antes vivida</h3><br /><textarea cols="50" rows="6" id="texto3" name="texto3">@Model.texto3</textarea></div>
+            <div class="col col-6"><h3>Una experiencia nunca antes vivida</h3><br /><textarea cols="50" rows="6" id="texto3" required name="texto3">@Model.texto3</textarea></div>
         </div>
         <br />
     </div>
@@ -100,9 +100,9 @@
 
                 <div class="row">
                     <div class="col-lg-9 text-center text-lg-left">
-                        <textarea cols="70" rows="6" name="descripcion1" id="descripcion1">@Model.descripcion1</textarea>
+                        <textarea cols="70" rows="6" name="descripcion1" id="descripcion1" required>@Model.descripcion1</textarea>
                         <br />
-                        <textarea cols="70" rows="6" name="descripcion2" id="descripcion2">@Model.descripcion2</textarea>
+                        <textarea cols="70" rows="6" name="descripcion2" id="descripcion2" required>@Model.descripcion2</textarea>
                     </div>
                     <div class="col-lg-3 cta-btn-container text-center">
                         <a class="cta-btn align-middle" asp-controller="Home" asp-action="ReservasEnLinea">Reservar Ahora!</a>
