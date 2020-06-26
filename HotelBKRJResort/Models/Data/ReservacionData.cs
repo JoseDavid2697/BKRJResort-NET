@@ -43,10 +43,39 @@ namespace HotelBKRJResort.Models.Data
                             habitacion.resultado = Convert.ToInt32(dataReader["resultado"]);
                             habitacion.fecha_inicio = dataReader["inicio"].ToString();
                             habitacion.fecha_final = dataReader["final"].ToString();
+                            habitacion.recomendacion = 0;
+                            
                         }
                         else
                         {
-                            habitacion.resultado = Convert.ToInt32(dataReader["resultado"]);
+                            connection.Close();
+
+                            connection.Open();
+                            string sql2 = $"EXEC [dbo].[sp_mostrarRecomendacion]'{fecha_llegada}','{fecha_salida}',{tipo_habitacion}";
+                            using (var command2 = new SqlCommand(sql2, connection))
+                            {
+                                using (var dataReader2 = command2.ExecuteReader())
+                                {
+                                    dataReader2.Read();
+                                    if (Convert.ToInt32(dataReader2["resultado"]) != 0)
+                                    {
+                                        habitacion.id_habitacion = Convert.ToInt32(dataReader2["id"]);
+                                        habitacion.monto = Convert.ToInt32(dataReader2["monto"]);
+                                        habitacion.descripcion = dataReader2["descripcion"].ToString();
+                                        habitacion.imagen = dataReader2["imagen"].ToString();
+                                        habitacion.resultado = Convert.ToInt32(dataReader2["resultado"]);
+                                        habitacion.fecha_inicio = dataReader2["inicio"].ToString();
+                                        habitacion.fecha_final = dataReader2["final"].ToString();
+                                        habitacion.recomendacion = 1;
+                                    }
+                                    else
+                                    {
+                                        habitacion.resultado = 0;
+                                        habitacion.recomendacion = 0;
+                                    }
+                                }
+                            }
+                            
                         }
 
                     }
