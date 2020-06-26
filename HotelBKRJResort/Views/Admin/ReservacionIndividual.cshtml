@@ -3,6 +3,7 @@
 }
 @model Reservacion
 <!-- ======= Header ======= -->
+<script src="~/assets/js/script.js"></script>
 <header id="header">
     <div class="container d-flex">
 
@@ -112,10 +113,10 @@
 
                         <button class="btn btn-success" type="submit">Imprimir</button>
                     </form>
-                    <br />
-                    <form asp-action="eliminarReservacion" asp-controller="Admin" method="post">
-                        <input id="id" name="id" value="@Model.id" hidden />
-                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    <br/>
+                    <form asp-action="eliminarReservacion" asp-controller="Admin" name="@Model.id" id="@Model.id" method="post">
+                        <input id="id" name="id" class="form-control" value="@Model.id" hidden />
+                        <input type="button" class="btn btn-danger" name="txt_test" id="txt_test" onclick="eliminarReservacion(@Model.id);" value="Eliminar" />
                     </form>
                 </div>
 

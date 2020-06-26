@@ -3,6 +3,7 @@
 }
 @model List<Temporada>
 <!-- ======= Header ======= -->
+<script src="~/assets/js/script.js"></script>
 <header id="header">
     <div class="container d-flex">
 
@@ -344,9 +345,9 @@
                                 <td><input id="multiplicador" name="multiplicador" class="form-control" value="@item.multiplicador" /></td>
                                 <td><button type="submit" class="btn-warning form-control">Actualizar</button></td>
                             </form>
-                            <form asp-action="EliminarTemporada" asp-controller="Admin" method="post">
+                            <form asp-action="EliminarTemporada" asp-controller="Admin" name="@item.Id" id="@item.Id" method="post">
                                 <td><input id="id" name="id" class="form-control" value="@item.Id" hidden /></td>
-                                <td><button type="submit" class="btn-danger form-control">Eliminar</button></td>
+                                <td><input type="button" class="btn-danger form-control" name="txt_test" id="txt_test" onclick="eliminarTemporada(@item.Id);" value="Eliminar" /></td>
                             </form>
                         </tr>
                         }
